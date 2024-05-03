@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled, keyframes } from "styled-components";
 import { FlexCenterCSS, FlexColumnCSS } from "../../styles/common";
 
 export const Border = styled.div`
@@ -35,8 +35,8 @@ export const EyesScore = styled.span`
     margin-top: 2px;
 `;
 
-export const SizedBox = styled.div`
-    height: 96px;
+export const SizedBox = styled.div<{ hSize: string }>`
+    height: ${({ hSize }) => hSize};
 `;
 
 export const GameWrapper = styled.div`
@@ -48,7 +48,6 @@ export const GameWrapper = styled.div`
 export const TitleBox = styled.div`
     width: 100%;
     height: 107px;
-    margin-bottom: 9px;
     background-color: ${({ theme }) => theme.COLOR.blue4};
     border-radius: 13px;
     color: white;
@@ -65,4 +64,30 @@ export const ImgWrapper = styled.div`
 export const SpanWrapper = styled.span`
     display: flex;
     align-items: center;
+`;
+
+const fillAnimation = keyframes<{ percent: string }>`
+  from {
+    width: 0%;
+  }
+  to {
+    width: ${({ percent }) => percent};
+  }
+`;
+
+export const PercentBox = styled.div<{ percent: string }>`
+    width: ${({ percent }) => percent};
+    animation: ${({ percent }) => fillAnimation} 2s ease-out;
+    height: 16px;
+    background-color: #f9cccc;
+    border-radius: 3px;
+    text-align: center;
+    padding: 5px 0px;
+    font-size: 18px;
+`;
+
+export const PercentWrapper = styled.div`
+    margin-top: 10px;
+    margin-bottom: 7px;
+    width: 100%;
 `;

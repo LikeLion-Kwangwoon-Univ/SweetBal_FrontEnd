@@ -1,6 +1,6 @@
 import Header from "../components/layout/header";
 import MainPage from "../pages/main/main";
-import BalancePage from "../pages/balance/balance";
+import BalancePage from "../pages/balance/Balance";
 
 const router = [
     {
