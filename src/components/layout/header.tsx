@@ -3,14 +3,15 @@ import { FlexCenterCSS } from "../../styles/common";
 import { Outlet } from "react-router-dom";
 
 function Header() {
-  return (
-    <>
-      <Container>
-        <h1>로고 자리</h1>
-      </Container>
-      <Outlet />
-    </>
-  );
+
+    return (
+        <>
+            <Container>
+                <h1>로고 자리</h1>
+            </Container>
+            <Outlet />
+        </>
+    );
 }
 export default Header;
 
