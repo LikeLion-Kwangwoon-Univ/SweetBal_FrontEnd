@@ -15,7 +15,7 @@ function Header() {
 export default Header
 
 const Container = styled.div`
-	height: 200px;
+	height: 132px;
 	${FlexCenterCSS}
 	background-color: ${({ theme }) => theme.COLOR.blue4};
 `
