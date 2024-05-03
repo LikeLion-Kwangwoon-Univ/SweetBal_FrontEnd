@@ -1,17 +1,28 @@
 import { styled } from 'styled-components'
 import { IoIosArrowBack } from 'react-icons/io'
 import { LiaEyeSolid } from 'react-icons/lia'
+import { useNavigate } from 'react-router-dom'
 
-function NavBar() {
+interface NavBarPropsType {
+	title: string
+	url: string
+	views: number
+}
+function NavBar({ title, url, views }: NavBarPropsType) {
+	const navigate = useNavigate()
+
+	const HandleNavClick = () => {
+		navigate(url)
+	}
 	return (
 		<Container>
 			<Side>
-				<EventIoIosArrowBack />
-				<Back>최고 인기</Back>
+				<EventIoIosArrowBack onClick={HandleNavClick} />
+				<Back>{title}</Back>
 			</Side>
 			<Side>
 				<LiaEyeSolid />
-				<Views>12</Views>
+				<Views>{views}</Views>
 			</Side>
 		</Container>
 	)
@@ -24,12 +35,12 @@ const Container = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: 10px;
+	width: 100%;
 `
 const Side = styled.div`
 	display: flex;
 	align-items: center;
-
+	margin: 10px;
 	height: 100%;
 `
 
