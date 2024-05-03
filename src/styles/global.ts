@@ -78,7 +78,7 @@ body{
 
 #root {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     height: 100%;
     background-color: #90C0EF;
 }
