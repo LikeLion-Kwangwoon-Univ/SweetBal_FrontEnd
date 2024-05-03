@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -76,13 +76,15 @@ body{
 ;
 }
 
-#root {
-    width: 100%;
-    max-width: 500px;
-    height: 100vh;
-    background-color: #90C0EF;
+@media (max-width: 450px) {
+    #root {
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+        background-color: #90C0EF;
+    }
 }
 
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
