@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineLeft } from "react-icons/Ai";
+import Bubble from "./Bubble";
 
 const Comments = () => {
   return (
@@ -8,6 +9,8 @@ const Comments = () => {
         <AiOutlineLeft />
         <p>댓글</p>
       </Header>
+
+      <Bubble />
     </Container>
   );
 };
@@ -15,6 +18,7 @@ const Comments = () => {
 const Container = styled.div`
   width: 100%;
   height: 80%;
+  padding: 14px;
   border-radius: 13px;
   background-color: #d5edff;
   position: absolute;
