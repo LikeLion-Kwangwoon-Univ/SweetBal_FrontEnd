@@ -12,7 +12,7 @@ const ListPageSingleListBox = () => {
       </BalanceContainer>
       <ViewContainer>
         <IoEyeOutline />
-        <ViewCountSpan>{123}</ViewCountSpan>
+        <ViewCountSpan>{111}</ViewCountSpan>
       </ViewContainer>
     </Container>
   );
