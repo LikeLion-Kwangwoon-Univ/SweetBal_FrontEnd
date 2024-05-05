@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -28,8 +28,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -41,7 +41,7 @@ time, mark, audio, video {
 }
 
 
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -76,13 +76,15 @@ body{
 ;
 }
 
-#root {
-    width: 100%;
-    max-width: 500px;
-    height: 100vh;
-    background-color: #90C0EF;
+@media (max-width: 450px) {
+    #root {
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+        background-color: #90C0EF;
+    }
 }
 
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
