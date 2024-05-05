@@ -1,6 +1,7 @@
 import ErrorPage from "../components/error/Error";
 import Header from "../components/layout/header";
-// import ListPage from "../pages/list/list";
+import LoadingPage from "../components/loading/Loading";
+import ListPage from "../pages/list/ListPage";
 import MainPage from "../pages/main/main";
 
 const router = [
@@ -16,7 +17,15 @@ const router = [
         path: "/error",
         element: <ErrorPage />,
       },
+      {
+        path: "/list",
+        element: <ListPage />,
+      },
     ],
+  },
+  {
+    path: "/loading",
+    element: <LoadingPage />,
   },
 ];
 

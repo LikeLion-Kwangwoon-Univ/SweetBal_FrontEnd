@@ -1,84 +1,68 @@
-// import { IoEyeOutline } from "react-icons/io5";
-// import styled from "styled-components";
-// import axios from "axios";
-// import {
-//   useQuery,
-// } from "@tanstack/react-query";
+import { IoEyeOutline } from "react-icons/io5";
+import styled from "styled-components";
+import { FlexColumnCSS } from "../styles/common";
 
-// function useFetchListData() {
-//   const { isPending, error, data } = useQuery({
-//     queryKey: ['repoData'],
-//     queryFn: () =>
-//       axios.get('endpoint').then((res) =>
-//         res.json(),
-//       )
-//   })
-//   if (isPending) return "Loading...";
+const ListPageSingleListBox = () => {
+  return (
+    <Container>
+      <BalanceContainer>
+        <Title>{"오늘 저녁을 돈까스 밥으로 ".substr(0, 15) + "..."}</Title>
+        <VS>VS</VS>
+        <Title>{"오늘 저녁을 돈까스 밥으로 ".substr(0, 15) + "..."}</Title>
+      </BalanceContainer>
+      <ViewContainer>
+        <IoEyeOutline />
+        <ViewCountSpan>{123}</ViewCountSpan>
+      </ViewContainer>
+    </Container>
+  );
+};
 
-//   if (error) return "An error has occurred: ";
-// }
+export default ListPageSingleListBox;
 
-// const ListPageSingleListBox = () => {
+const Container = styled.div`
+  ${FlexColumnCSS};
+  background-color: white;
+  width: 327px;
+  height: 75px;
+  border-radius: 10px;
+  align-items: center;
+  /* justify-content: center; */
+  cursor: pointer;
+  margin: 0 auto;
+  margin-bottom: 14px;
+`;
 
-//   return (
-//     <>
-//       <Container>
-//         <Title>{data.title.substr(0, 15) + "..."}</Title>
-//         <VS>VS</VS>
-//         <Title>{data.title.substr(0, 15) + "..."}</Title>
-//         <ViewContainer>
-//           <IoEyeOutline />
-//           <ViewCountSpan>{data.viewCount}</ViewCountSpan>
-//         </ViewContainer>
-//       </Container>
-//     </>
-//   );
-// };
+const BalanceContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+`;
 
-// export default ListPageSingleListBox;
+const VS = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
 
-// const Container = styled.div`
-//   display: flex;
-//   background-color: white;
-//   width: 327px;
-//   height: 75px;
-//   margin-bottom: 24px;
-//   border-radius: 10px;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-//   position: relative;
-// `;
+const ViewContainer = styled.div`
+  display: flex;
+  align-self: flex-end;
+  margin-top: 8px;
+  margin-right: 5px;
+`;
 
-// const VS = styled.div`
-//   font-size: 20px;
-//   font-weight: bold;
-// `;
+const ViewCountSpan = styled.span`
+  display: flex;
+  padding: 0px;
+  padding-top: 1px;
+  margin-left: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: light;
+`;
 
-// const ViewContainer = styled.div`
-//   display: flex;
-//   position: absolute;
-//   background-color: white;
-//   padding: 0px;
-//   bottom: 8px;
-//   right: 7px;
-//   width: 43px;
-//   height: 18px;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: white;
-// `;
-
-// const ViewCountSpan = styled.span`
-//   display: flex;
-//   padding: 0px;
-//   margin-left: none;
-//   justify-content: center;
-//   align-items: center;
-//   font-size: auto;
-//   font-weight: bold;
-// `;
-
-// const Title = styled.div`
-//   font-size: 13px;
-// `;
+const Title = styled.div`
+  font-size: 13px;
+  font-weight: bold;
+`;
