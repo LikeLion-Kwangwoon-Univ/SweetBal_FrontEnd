@@ -82,7 +82,8 @@ body{
     max-width: 450px;
     min-height: 100vh;
     background-color: #90C0EF;
-
+    padding: 0 20px 20px;
+    box-sizing: border-box;
 }
 
 `;

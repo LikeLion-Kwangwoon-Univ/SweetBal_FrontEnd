@@ -2,8 +2,6 @@ import { styled, keyframes } from "styled-components";
 import { FlexCenterCSS, FlexColumnCSS } from "../../styles/common";
 
 export const Border = styled.div`
-  width: 90%;
-  margin: 0 auto;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;

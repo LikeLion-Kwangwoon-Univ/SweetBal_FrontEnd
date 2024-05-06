@@ -36,6 +36,7 @@ const InputMessage = ({ currentTab }: InputMessageProps) => {
     <Container>
       <Input
         value={comment}
+        size={10}
         onChange={(e) => setComment(e.target.value)}
         placeholder={"댓글을 입력해주세요."}
       />
