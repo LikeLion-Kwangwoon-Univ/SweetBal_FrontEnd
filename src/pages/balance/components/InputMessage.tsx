@@ -16,17 +16,19 @@ const InputMessage = ({ currentTab }: InputMessageProps) => {
   const { mutate: recommentSendMutation } = useRecommentSendMutation("1");
 
   const handleClickSend = () => {
-    const sendMessage = {
-      id: `1`,
-      position: "left",
-      message: comment,
-      recomment: 0,
-      liked: 0,
-    };
+    if (comment !== "") {
+      const sendMessage = {
+        id: `1`,
+        position: "left",
+        message: comment,
+        recomment: 0,
+        liked: 0,
+      };
 
-    currentTab === 1
-      ? commentSendMutation(sendMessage)
-      : recommentSendMutation(sendMessage);
+      currentTab === 1
+        ? commentSendMutation(sendMessage)
+        : recommentSendMutation(sendMessage);
+    }
     setComment("");
   };
 
@@ -43,6 +45,7 @@ const InputMessage = ({ currentTab }: InputMessageProps) => {
 };
 
 const Container = styled.div`
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   height: 43px;
