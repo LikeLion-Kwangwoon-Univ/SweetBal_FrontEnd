@@ -3,7 +3,7 @@ import { FlexCenterCSS, FlexColumnCSS } from "../../styles/common";
 
 export const Border = styled.div`
     ${FlexCenterCSS}
-    height: calc(100vh - 200px); /* 수정 필요 */
+    height: calc(100vh - 132px); /* 수정 필요 */
 `;
 
 export const Wrapper = styled.div`

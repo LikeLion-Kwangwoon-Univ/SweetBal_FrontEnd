@@ -13,12 +13,7 @@ const router = [
             },
             {
                 path: "/balance",
-                element: (
-                    <BalancePage
-                        subject="최근 등록 벨런스 게임"
-                        eyesScore={12}
-                    />
-                ),
+                element: <BalancePage subject="최근 등록 벨런스 게임" />,
             },
         ],
     },
