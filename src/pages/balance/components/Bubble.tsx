@@ -3,6 +3,8 @@ import styled from "styled-components";
 import React, { SetStateAction, useState } from "react";
 import BubbleContainer from "./BubbleContainer";
 import { BubbleType } from "../../../interface/BubbleInterface";
+import { useLikedMutation } from "../../../query/patch/useLikedMutation";
+import { useUnlikedMutation } from "../../../query/patch/useUnlikedMutation";
 
 interface BubbleInterface {
   comment: BubbleType;
@@ -17,14 +19,28 @@ const Bubble = ({
   setCurrentTab,
   setTargetComment,
 }: BubbleInterface) => {
-  const { position, message, recomment, liked } = comment;
+  const { id, position, message, recomment, liked } = comment;
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [likedNum, setLikedNum] = useState(liked);
+  const { mutate: likedMutation } = useLikedMutation(id);
+  const { mutate: unlikedMutation } = useUnlikedMutation(id);
 
-  const handleClickHeart = () => setIsLiked(!isLiked);
+  const handleClickHeart = () => {
+    if (isLiked) {
+      unlikedMutation();
+      setLikedNum((prev) => prev - 1);
+    } else {
+      likedMutation();
+      setLikedNum((prev) => prev + 1);
+    }
+    setIsLiked(!isLiked);
+  };
+
   const handleClickRecomment = () => {
     if (setTargetComment) setTargetComment(comment);
     setCurrentTab(2);
   };
+
   return (
     <Container position={position}>
       <div className="bubble-box-fit">
@@ -38,7 +54,7 @@ const Bubble = ({
             </div>
           )}
           <div onClick={handleClickHeart}>
-            <span>{liked}</span>
+            <span>{likedNum}</span>
             {isLiked ? <AiFillHeart fill="red" /> : <AiOutlineHeart />}
           </div>
         </Footer>
