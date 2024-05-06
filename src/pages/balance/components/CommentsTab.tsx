@@ -26,9 +26,10 @@ const CommentsTab = ({
       </S.Header>
 
       <S.Content>
-        {comments.map((comment: BubbleType) => (
+        {comments.map((comment: BubbleType, index) => (
           <Bubble
-            key={comment.id}
+            key={index}
+            // key={comment.id}
             currentTab={currentTab}
             setTargetComment={setTargetComment}
             setCurrentTab={setCurrentTab}

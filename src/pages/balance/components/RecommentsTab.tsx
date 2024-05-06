@@ -28,9 +28,10 @@ const RecommentsTab = ({
       <S.TargetMessage>{targetComment?.message}</S.TargetMessage>
 
       <S.Content>
-        {recomments.map((comment: BubbleType) => (
+        {recomments.map((comment: BubbleType, index) => (
           <Bubble
-            key={comment.id}
+            key={index}
+            // key={comment.id}
             currentTab={currentTab}
             setCurrentTab={setCurrentTab}
             comment={comment}
