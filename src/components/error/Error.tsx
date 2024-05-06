@@ -4,6 +4,7 @@ import Error from "../../assets/imgs/Error/ErrorImg.svg";
 import VsImg from "../../assets/imgs/Error/VsImg.svg";
 import ErrorRbot from "../../assets/imgs/Error/ErrorRobot.svg";
 import { FlexCenterCSS, FlexColumnCSS } from "../../styles/common";
+
 const ErrorPage = () => {
   return (
     <Border>
@@ -26,8 +27,8 @@ const ErrorPage = () => {
         <ErrorRobotWrapper>
           <img src={ErrorRbot}></img>
         </ErrorRobotWrapper>
+        {/* <LoadingPage /> */}
       </Container>
-      ;
     </Border>
   );
 };
@@ -36,7 +37,6 @@ export default ErrorPage;
 
 const Border = styled.div`
   ${FlexCenterCSS};
-  // height: 변화 필요;
 `;
 
 const Container = styled.div`
