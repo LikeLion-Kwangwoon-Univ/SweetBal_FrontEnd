@@ -1,10 +1,10 @@
-import { AiOutlineLeft } from "react-icons/Ai";
+import { AiOutlineLeft } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import InputMessage from "./InputMessage";
 import { BubbleType } from "../../../interface/BubbleInterface";
 import Bubble from "./Bubble";
 import { SetStateAction } from "react";
-import { useScrollToBottom } from "../../../hooks/useScrollToBottom";
+import { useScrollToTop } from "../../../hooks/useScrollToTop";
 
 interface RecommentsTab {
   currentTab: number;
@@ -19,7 +19,7 @@ const RecommentsTab = ({
   targetComment,
   setCurrentTab,
 }: RecommentsTab) => {
-  const recommentRef = useScrollToBottom(recomments);
+  const recommentRef = useScrollToTop(recomments);
 
   return (
     <S.Container>

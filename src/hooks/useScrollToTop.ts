@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { BubbleType } from "../interface/BubbleInterface";
 
-export const useScrollToBottom = (list: BubbleType[]) => {
+export const useScrollToTop = (list: BubbleType[]) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const scrollToBottom = () => {
+  const scrollToTop = () => {
     if (ref && ref.current) {
       ref.current.scrollTo({
         top: 0,
@@ -14,7 +14,7 @@ export const useScrollToBottom = (list: BubbleType[]) => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    scrollToTop();
   }, [list]);
 
   return ref;

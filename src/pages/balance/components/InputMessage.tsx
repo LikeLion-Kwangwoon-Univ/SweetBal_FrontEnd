@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineSend } from "react-icons/Ai";
+import { AiOutlineSend } from "react-icons/ai";
 import styled from "styled-components";
 import { useCommentSendMutation } from "../../../query/patch/useCommentSendMutation";
 import { useRecommentSendMutation } from "../../../query/patch/useRecommentSendMutation";

@@ -4,7 +4,7 @@ import Bubble from "./Bubble";
 import { BubbleType } from "../../../interface/BubbleInterface";
 import InputMessage from "./InputMessage";
 import React, { SetStateAction } from "react";
-import { useScrollToBottom } from "../../../hooks/useScrollToBottom";
+import { useScrollToTop } from "../../../hooks/useScrollToTop";
 
 interface CommentsTabType {
   currentTab: number;
@@ -19,7 +19,7 @@ const CommentsTab = ({
   setTargetComment,
   setCurrentTab,
 }: CommentsTabType) => {
-  const commentRef = useScrollToBottom(comments);
+  const commentRef = useScrollToTop(comments);
 
   return (
     <S.Container>
