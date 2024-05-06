@@ -1,46 +1,50 @@
 import styled from "styled-components";
-import { AiOutlineLeft } from "react-icons/Ai";
-import Bubble from "./Bubble";
+import { useState } from "react";
+import { useCommentsQuery } from "../../../query/get/useCommentsQuery";
+import { useRecommentsQuery } from "../../../query/get/useRecommentsQuery";
+import CommentsTab from "./CommentsTab";
+import RecommentsTab from "./RecommentsTab";
+import { BubbleType } from "../../../interface/BubbleInterface";
 
 const Comments = () => {
-  return (
-    <Container>
-      <Header>
-        <AiOutlineLeft />
-        <p>댓글</p>
-      </Header>
+  const [currentTab, setCurrentTab] = useState<number>(1);
+  const [targetComment, setTargetComment] = useState<BubbleType | undefined>(
+    undefined
+  );
+  const { data: commentsQuery, status: commentsStatus } = useCommentsQuery();
+  const { data: recommentsQuery, status: recommentsStatus } =
+    useRecommentsQuery(targetComment?.id);
 
-      <Bubble />
+  if (commentsStatus === "loading" || recommentsStatus === "loading")
+    return null;
+  if (commentsStatus === "error" || recommentsStatus === "error") return null;
+
+  return (
+    <Container $currentTab={currentTab}>
+      <CommentsTab
+        currentTab={currentTab}
+        comments={commentsQuery}
+        setTargetComment={setTargetComment}
+        setCurrentTab={setCurrentTab}
+      />
+
+      <RecommentsTab
+        currentTab={currentTab}
+        recomments={recommentsQuery}
+        targetComment={targetComment}
+        setCurrentTab={setCurrentTab}
+      />
     </Container>
   );
 };
 
-const Container = styled.div`
-  width: 100%;
-  height: 80%;
-  padding: 14px;
-  border-radius: 13px;
-  background-color: #d5edff;
-  position: absolute;
-  bottom: 0;
-`;
-
-const Header = styled.div`
-  position: relative;
+const Container = styled.div<{ $currentTab: number }>`
+  width: 200%;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid ${({ theme }) => theme.COLOR.grey1};
-  font-size: 17px;
-  font-weight: bold;
-
-  & > svg {
-    width: 19px;
-    height: 19px;
-    position: absolute;
-    left: 10px;
-  }
+  transition: all 0.3s;
+  transform: ${({ $currentTab }) =>
+    $currentTab === 2 ? "translateX(-50%)" : "translateX(0%)"};
 `;
 
 export default Comments;
