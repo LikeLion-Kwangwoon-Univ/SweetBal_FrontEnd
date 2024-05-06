@@ -2,15 +2,6 @@ import { styled } from 'styled-components'
 import Group4x4ListBox from './components/group4x4ListBox'
 
 function MainPage() {
-  return (
-    <>
-      <h1>MainPage</h1>
-    </>
-  );
-}
-export default MainPage;
-
-
 	return (
 		<Container>
 			{Array(3)
@@ -28,4 +19,3 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 `
-
