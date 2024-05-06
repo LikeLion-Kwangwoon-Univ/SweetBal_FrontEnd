@@ -22,7 +22,7 @@ const Container = styled.div`
   padding: 10px;
   background-color: white;
   border-radius: 11px;
-  font-size: 15px;
+  font-size: 13px;
   overflow-wrap: break-word;
 `;
 

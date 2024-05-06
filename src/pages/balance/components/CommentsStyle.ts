@@ -15,15 +15,15 @@ export const Container = styled.div`
 export const Header = styled.div`
   ${FlexCenterCSS};
   position: relative;
-  padding: 10px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
+  margin-bottom: 5px;
 
   & > svg {
     width: 19px;
     height: 19px;
     position: absolute;
-    left: 10px;
+    left: 0;
     cursor: pointer;
   }
 `;
