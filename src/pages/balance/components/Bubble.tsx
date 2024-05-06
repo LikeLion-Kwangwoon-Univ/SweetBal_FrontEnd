@@ -1,4 +1,4 @@
-import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from "react-icons/Ai";
+import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from "react-icons/ai";
 import styled from "styled-components";
 import React, { SetStateAction, useState } from "react";
 import BubbleContainer from "./BubbleContainer";
