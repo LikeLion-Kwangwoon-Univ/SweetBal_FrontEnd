@@ -41,6 +41,7 @@ const Comments = () => {
 const Container = styled.div<{ $currentTab: number }>`
   width: 200%;
   height: 100%;
+  margin-bottom: 20px;
   display: flex;
   transition: all 0.3s;
   transform: ${({ $currentTab }) =>

@@ -1,4 +1,4 @@
-import { AiOutlineDown } from "react-icons/Ai";
+import { AiOutlineDown } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import Bubble from "./Bubble";
 import { BubbleType } from "../../../interface/BubbleInterface";
