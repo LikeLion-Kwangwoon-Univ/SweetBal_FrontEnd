@@ -4,6 +4,7 @@ import InputMessage from "./InputMessage";
 import { BubbleType } from "../../../interface/BubbleInterface";
 import Bubble from "./Bubble";
 import { SetStateAction } from "react";
+import { useScrollToBottom } from "../../../hooks/useScrollToBottom";
 
 interface RecommentsTab {
   currentTab: number;
@@ -18,6 +19,8 @@ const RecommentsTab = ({
   targetComment,
   setCurrentTab,
 }: RecommentsTab) => {
+  const recommentRef = useScrollToBottom(recomments);
+
   return (
     <S.Container>
       <S.Header>
@@ -27,7 +30,7 @@ const RecommentsTab = ({
 
       <S.TargetMessage>{targetComment?.message}</S.TargetMessage>
 
-      <S.Content>
+      <S.Content ref={recommentRef}>
         {recomments.map((comment: BubbleType, index) => (
           <Bubble
             key={index}
