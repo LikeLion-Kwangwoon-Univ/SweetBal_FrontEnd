@@ -94,7 +94,7 @@ function BalancePage({ subject }: { subject: string }) {
             </GameWrapper>
           </Wrapper>
         ) : (
-          <Comments />
+          <Comments setIsOpenComment={setIsOpenComment} />
         )}
       </Border>
       <NewBtn setIsOpenComment={setIsOpenComment} />

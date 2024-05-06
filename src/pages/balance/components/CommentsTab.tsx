@@ -9,6 +9,7 @@ import { useScrollToTop } from "../../../hooks/useScrollToTop";
 interface CommentsTabType {
   currentTab: number;
   comments: BubbleType[];
+  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
   setTargetComment: React.Dispatch<SetStateAction<BubbleType | undefined>>;
   setCurrentTab: React.Dispatch<SetStateAction<number>>;
 }
@@ -16,6 +17,7 @@ interface CommentsTabType {
 const CommentsTab = ({
   currentTab,
   comments,
+  setIsOpenComment,
   setTargetComment,
   setCurrentTab,
 }: CommentsTabType) => {
@@ -24,7 +26,7 @@ const CommentsTab = ({
   return (
     <S.Container>
       <S.Header>
-        <AiOutlineDown />
+        <AiOutlineDown onClick={() => setIsOpenComment(false)} />
         <p>댓글</p>
       </S.Header>
 

@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { useCommentsQuery } from "../../../query/get/useCommentsQuery";
 import { useRecommentsQuery } from "../../../query/get/useRecommentsQuery";
 import CommentsTab from "./CommentsTab";
 import RecommentsTab from "./RecommentsTab";
 import { BubbleType } from "../../../interface/BubbleInterface";
 
-const Comments = () => {
+interface CommentsProps {
+  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const Comments = ({ setIsOpenComment }: CommentsProps) => {
   const [currentTab, setCurrentTab] = useState<number>(1);
   const [targetComment, setTargetComment] = useState<BubbleType | undefined>(
     undefined
@@ -24,6 +28,7 @@ const Comments = () => {
       <CommentsTab
         currentTab={currentTab}
         comments={commentsQuery}
+        setIsOpenComment={setIsOpenComment}
         setTargetComment={setTargetComment}
         setCurrentTab={setCurrentTab}
       />

@@ -3,11 +3,11 @@ import { FlexCenterCSS } from "../../styles/common";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SetStateAction } from "react";
 
-interface NewBtn {
+interface NewBtnProps {
   setIsOpenComment?: React.Dispatch<SetStateAction<boolean>>;
 }
 
-function NewBtn({ setIsOpenComment }: NewBtn) {
+function NewBtn({ setIsOpenComment }: NewBtnProps) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
