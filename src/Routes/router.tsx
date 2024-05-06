@@ -1,6 +1,6 @@
 import ErrorPage from '../components/error/Error'
 import Header from '../components/layout/header'
-import LoadingPage from '../components/loading/Loading'
+import BalancePage from '../pages/balance/Balance'
 import ListPage from '../pages/list/ListPage'
 import MainPage from '../pages/main/main'
 
@@ -14,8 +14,12 @@ const router = [
 				element: <MainPage />,
 			},
 			{
-				path: '/error',
-				element: <ErrorPage />,
+				path: '/list',
+				element: <ListPage />,
+			},
+			{
+				path: '/balance',
+				element: <BalancePage subject="최근등록밸런스" />,
 			},
 			{
 				path: '/list',
@@ -24,8 +28,14 @@ const router = [
 		],
 	},
 	{
-		path: '/loading',
-		element: <LoadingPage />,
+		path: '/',
+		element: <Header />,
+		children: [
+			{
+				path: '/*',
+				element: <ErrorPage />,
+			},
+		],
 	},
 ]
 
