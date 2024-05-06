@@ -1,21 +1,21 @@
-import styled from "styled-components";
-import Comments from "../balance/components/Comments";
+import { styled } from "styled-components";
+import Group4x4ListBox from "./components/group4x4ListBox";
 
 function MainPage() {
   return (
     <Container>
-      <Comments />
+      {Array(3)
+        .fill(0)
+        .map(() => (
+          <Group4x4ListBox />
+        ))}
     </Container>
   );
 }
+export default MainPage;
 
 const Container = styled.div`
-  width: 350px;
-  height: 500px;
-  overflow: hidden;
-  background: white;
-  margin: 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
-
-export default MainPage;
