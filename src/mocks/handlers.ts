@@ -1,8 +1,8 @@
 import { HttpResponse, http } from "msw";
 import { BubbleType } from "../interface/BubbleInterface";
 
-const comments: BubbleType[] = [];
-const recomments: BubbleType[] = [];
+let comments: BubbleType[] = [];
+let recomments: BubbleType[] = [];
 
 export const handlers = [
   http.get("/comments/1", () => {
@@ -31,7 +31,7 @@ export const handlers = [
   }),
   http.patch("/comments/1/comment", async ({ request }) => {
     const newComment: BubbleType = (await request.json()) as BubbleType;
-    comments.push(newComment);
+    comments = [newComment, ...comments];
     return HttpResponse.json({
       comments: [...comments, newComment],
     });
@@ -39,7 +39,7 @@ export const handlers = [
   // `/comments/밸런스게임 id/recomment/target id`
   http.patch(`/comments/1/recomment/1`, async ({ request }) => {
     const newRecomment: BubbleType = (await request.json()) as BubbleType;
-    recomments.push(newRecomment);
+    recomments = [newRecomment, ...recomments];
     return HttpResponse.json({
       recomments: [...recomments, newRecomment],
     });

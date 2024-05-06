@@ -6,7 +6,10 @@ export const useScrollToBottom = (list: BubbleType[]) => {
 
   const scrollToBottom = () => {
     if (ref && ref.current) {
-      ref.current.scrollTop = ref.current.scrollHeight;
+      ref.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   };
 
