@@ -1,9 +1,5 @@
-export interface BalancePageProps {
-    subject: string;
-    eyesScore: number;
-}
-
 export interface GameContent {
+    eyesScore: number;
     title1: string;
     subtitle1: string;
     people1: number;
@@ -11,3 +7,13 @@ export interface GameContent {
     subtitle2: string;
     people2: number;
 }
+
+export const InitGameData: GameContent = {
+    eyesScore: 0,
+    title1: "",
+    subtitle1: "",
+    people1: 0,
+    title2: "",
+    subtitle2: "",
+    people2: 0,
+};
