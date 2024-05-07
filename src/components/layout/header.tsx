@@ -16,6 +16,7 @@ function Header() {
 export default Header
 
 const Container = styled.div`
+
 	height: 132px;
 	${FlexCenterCSS}
 `

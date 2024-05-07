@@ -24,7 +24,6 @@ function Group4x4ListBox() {
 export default Group4x4ListBox
 
 const Container = styled.div`
-	/* width: 370px; */
 	height: 250px;
 	border-radius: 15px;
 	background-color: white;
