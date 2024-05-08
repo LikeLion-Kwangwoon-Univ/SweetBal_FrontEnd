@@ -54,6 +54,4 @@ const Border = styled.div`
   ${FlexColumnCSS};
   height: 100vh;
 `;
-// const Target = styled.div`
-//   height: 1px;
-// `;
+
