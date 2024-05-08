@@ -76,4 +76,30 @@ export const handlers = [
       message: "success",
     });
   }),
+
+  // rest.get("/users", async (req, res, ctx) => {
+  //   const { searchParams } = req.url;
+  //   const size = Number(searchParams.get("size"));
+  //   const page = Number(searchParams.get("page"));
+  //   const totalCount = users.length;
+  //   const totalPages = Math.ceil(totalCount / size);
+
+  //   return res(
+  //     ctx.status(200),
+  //     ctx.json({
+  //       contents: users.slice(page * size, (page + 1) * size),
+  //       pageNumber: page,
+  //       pageSize: size,
+  //       totalPages,
+  //       totalCount,
+  //       isLastPage: totalPages <= page,
+  //       isFirstPage: page === 0,
+  //     }),
+  //     ctx.delay(500)
+  //   );
+  // }),
+  http.post("/login", async ({ request }) => {
+    const info = await request.formData();
+    console.log('Logging in as "%s"', info.get("username"));
+  }),
 ];

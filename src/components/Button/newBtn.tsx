@@ -39,15 +39,13 @@ const Container = styled.div`
   &:hover {
     scale: 1.05;
   }
+  right: 40%;
+  background-color: white;
+  ${FlexCenterCSS}
+  border: 4px solid ${({ theme }) => theme.COLOR.blue4};
+  cursor: pointer;
+  animation: fadeIn forwards;
+  &:hover {
+    scale: 1.05;
+  }
 `;
-	right: 40%;
-	background-color: white;
-	${FlexCenterCSS}
-	border: 4px solid ${({ theme }) => theme.COLOR.blue4};
-	cursor: pointer;
-	animation: fadeIn forwards;
-	&:hover {
-		scale: 1.05;
-	}
-`
-
