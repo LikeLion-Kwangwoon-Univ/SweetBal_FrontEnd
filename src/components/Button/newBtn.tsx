@@ -1,3 +1,4 @@
+
 import { styled } from 'styled-components'
 import { FlexCenterCSS } from '../../styles/common'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -20,23 +21,23 @@ function NewBtn({ setIsOpenComment }: NewBtnProps) {
 		<Container onClick={HandleNew}>
 			{pathname === '/balance' ? '댓글' : 'New'}
 		</Container>
-	)
-}
-export default NewBtn
+
+export default NewBtn;
 
 const Container = styled.div`
-	width: 63px;
-	height: 63px;
-	position: fixed;
-	border-radius: 50%;
-	bottom: 60px;
-	right: 40%;
-	background-color: white;
-	${FlexCenterCSS}
-	border: 4px solid ${({ theme }) => theme.COLOR.blue4};
-	cursor: pointer;
-	animation: fadeIn forwards;
-	&:hover {
-		scale: 1.05;
-	}
-`
+  width: 63px;
+  height: 63px;
+  position: fixed;
+  border-radius: 50%;
+  bottom: 60px;
+
+  ${FlexCenterCSS}
+  border: 4px solid ${({ theme }) => theme.COLOR.blue4};
+  cursor: pointer;
+  animation: fadeIn forwards;
+  &:hover {
+    scale: 1.05;
+  }
+  right: 40%;
+  background-color: white;
+`;

@@ -1,3 +1,4 @@
+
 import { HttpResponse, http } from 'msw'
 import { BubbleType } from '../interface/BubbleInterface'
 import { getMainData } from './MSWApis/Main/getMain'
@@ -62,7 +63,8 @@ export const handlers = [
 		})
 	}),
 
-	http.get('/balancedata', () => {
+	http.get('/
+           ', () => {
 		return HttpResponse.json({
 			eyesScore: 12,
 			title1: '내 생각 읽기 가능',
@@ -79,3 +81,31 @@ export const handlers = [
 		})
 	}),
 ]
+
+  // rest.get("/users", async (req, res, ctx) => {
+  //   const { searchParams } = req.url;
+  //   const size = Number(searchParams.get("size"));
+  //   const page = Number(searchParams.get("page"));
+  //   const totalCount = users.length;
+  //   const totalPages = Math.ceil(totalCount / size);
+
+  //   return res(
+  //     ctx.status(200),
+  //     ctx.json({
+  //       contents: users.slice(page * size, (page + 1) * size),
+  //       pageNumber: page,
+  //       pageSize: size,
+  //       totalPages,
+  //       totalCount,
+  //       isLastPage: totalPages <= page,
+  //       isFirstPage: page === 0,
+  //     }),
+  //     ctx.delay(500)
+  //   );
+  // }),
+  http.post("/login", async ({ request }) => {
+    const info = await request.formData();
+    console.log('Logging in as "%s"', info.get("username"));
+  }),
+];
+

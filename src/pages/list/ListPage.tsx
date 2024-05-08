@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
-import ListPageSingleListBox from "../../components/ListPageSingleListBox";
 import { FlexColumnCSS } from "../../styles/common";
+import ListPageSingleListBox from "../../components/list/ListPageSingleListBox";
 
 function ListPage() {
   return (
@@ -54,3 +54,4 @@ const Border = styled.div`
   ${FlexColumnCSS};
   height: 100vh;
 `;
+
