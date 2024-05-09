@@ -1,6 +1,6 @@
 import { IoEyeOutline } from "react-icons/io5";
 import styled from "styled-components";
-import { FlexColumnCSS } from "../../styles/common";
+import { FlexColumnCSS } from "../styles/common";
 
 const ListPageSingleListBox = () => {
   return (
@@ -12,7 +12,7 @@ const ListPageSingleListBox = () => {
       </BalanceContainer>
       <ViewContainer>
         <IoEyeOutline />
-        <ViewCountSpan>{123}</ViewCountSpan>
+        <ViewCountSpan>{111}</ViewCountSpan>
       </ViewContainer>
     </Container>
   );
@@ -23,7 +23,7 @@ export default ListPageSingleListBox;
 const Container = styled.div`
   ${FlexColumnCSS};
   background-color: white;
-  width: 100%;
+  width: 327px;
   height: 75px;
   border-radius: 10px;
   align-items: center;
@@ -65,6 +65,4 @@ const ViewCountSpan = styled.span`
 const Title = styled.div`
   font-size: 13px;
   font-weight: bold;
-  margin-right: 10px;
-  margin-left: 10px;
 `;

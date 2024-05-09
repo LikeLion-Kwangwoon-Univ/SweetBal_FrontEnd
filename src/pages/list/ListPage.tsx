@@ -33,7 +33,6 @@ const Title = styled.div`
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-left: 24px;
   display: flex;
   align-items: center;
 `;
@@ -47,13 +46,11 @@ const Container = styled.div`
   align-items: center;
   margin: 0 auto;
   height: fit-content;
+  width: 100%;
   top: 14px;
 `;
 
 const Border = styled.div`
   ${FlexColumnCSS};
-  height: 100vh;
+  height: fit-content;
 `;
-// const Target = styled.div`
-//   height: 1px;
-// `;
