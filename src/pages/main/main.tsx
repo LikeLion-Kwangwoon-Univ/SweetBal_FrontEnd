@@ -4,7 +4,6 @@ import useGetMainData from '../../query/get/useGetMain'
 import LoadingPage from '../../components/loading/Loading'
 
 function MainPage() {
-
 	const { data, isLoading } = useGetMainData()
 
 	if (isLoading)
