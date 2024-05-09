@@ -81,6 +81,7 @@ const fillAnimation = keyframes<{ percent: string }>`
 export const PercentBox = styled.div<{ percent: string }>`
     width: ${({ percent }) => percent};
     animation: ${({ percent }) => fillAnimation} 2s ease-out;
+    margin: 5px 0px;
     height: 26px;
     background-color: #f9cccc;
     border-radius: 3px;
