@@ -35,7 +35,7 @@ function BalancePage({ subject }: { subject: string }) {
     useEffect(() => {
         setGameData(res.data ?? InitGameData)
         setIsLoading(res.isLoading)
-    }, [res.data, res.isLoading])
+    }, [res])
 
     const handleSelect = async (num: number) => {
         if (select === 0) {
