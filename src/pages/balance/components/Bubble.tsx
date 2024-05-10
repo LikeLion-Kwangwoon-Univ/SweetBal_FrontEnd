@@ -19,11 +19,11 @@ const Bubble = ({
   setCurrentTab,
   setTargetComment,
 }: BubbleInterface) => {
-  const { id, position, message, recomment, liked } = comment;
+  const { id, sideInfo, content, childCount, likeCount } = comment;
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [likedNum, setLikedNum] = useState(liked);
-  const { mutate: likedMutation } = useLikedMutation(id);
-  const { mutate: unlikedMutation } = useUnlikedMutation(id);
+  const [likedNum, setLikedNum] = useState(likeCount);
+  const { mutate: likedMutation } = useLikedMutation(id as string);
+  const { mutate: unlikedMutation } = useUnlikedMutation(id as string);
 
   const handleClickHeart = () => {
     if (isLiked) {
@@ -42,14 +42,14 @@ const Bubble = ({
   };
 
   return (
-    <Container position={position}>
+    <Container sideInfo={sideInfo}>
       <div className="bubble-box-fit">
-        <BubbleContainer position={position}>{message}</BubbleContainer>
+        <BubbleContainer sideInfo={sideInfo}>{content}</BubbleContainer>
 
-        <Footer position={position}>
+        <Footer sideInfo={sideInfo}>
           {currentTab === 1 && (
             <div onClick={handleClickRecomment}>
-              <span>{recomment}</span>
+              <span>{childCount}</span>
               <AiOutlineComment />
             </div>
           )}
@@ -63,10 +63,10 @@ const Bubble = ({
   );
 };
 
-export const Container = styled.div<{ position: string }>`
+export const Container = styled.div<{ sideInfo: number }>`
   display: flex;
-  justify-content: ${({ position }) =>
-    position === "left" ? "flex-start" : "flex-end"};
+  justify-content: ${({ sideInfo }) =>
+    sideInfo === 0 ? "flex-start" : "flex-end"};
 
   .bubble-box-fit {
     display: flex;
@@ -75,10 +75,10 @@ export const Container = styled.div<{ position: string }>`
   }
 `;
 
-export const Footer = styled.div<{ position: string }>`
+export const Footer = styled.div<{ sideInfo: number }>`
   display: flex;
-  justify-content: ${({ position }) =>
-    position === "left" ? "flex-end" : "flex-start"};
+  justify-content: ${({ sideInfo }) =>
+    sideInfo === 0 ? "flex-end" : "flex-start"};
   gap: 7px;
   font-size: 10px;
   color: ${({ theme }) => theme.COLOR.grey1};

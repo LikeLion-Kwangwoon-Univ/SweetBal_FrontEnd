@@ -18,7 +18,9 @@ const Comments = ({ setIsOpenComment }: CommentsProps) => {
   );
   const { getCommentsData, getRecommentsData, isLoading, isError } =
     useGetAllComments({
-      postId: parseInt(postId as string),
+      // 게임 params 설정 시, 수정
+      // postId: parseInt(postId as string),
+      postId: 1,
       commentId: targetComment?.id,
     });
 

@@ -28,7 +28,7 @@ const RecommentsTab = ({
         <p>대댓글</p>
       </S.Header>
 
-      <S.TargetMessage>{targetComment?.message}</S.TargetMessage>
+      <S.TargetMessage>{targetComment?.content}</S.TargetMessage>
 
       <S.Content ref={recommentRef}>
         {recomments.map((comment: BubbleType, index) => (

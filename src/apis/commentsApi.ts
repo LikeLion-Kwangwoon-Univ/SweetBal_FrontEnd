@@ -1,6 +1,6 @@
 import axiosInstance from "./@core";
 
-const PATH = "/goldbalance/";
+const PATH = "/goldbalance";
 
 interface commentsType {
   postId: number;
