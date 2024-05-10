@@ -1,9 +1,10 @@
 export interface BubbleType {
   id: number;
-  position: string;
-  message: string;
-  recomment: number;
-  liked: number;
+  sideInfo: number;
+  content: string;
+  childCount?: number;
+  likeCount: number;
+  parentCommnetId: number;
 }
 
 export interface CommentsQueryType {
