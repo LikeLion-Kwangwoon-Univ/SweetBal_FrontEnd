@@ -80,7 +80,7 @@ export const Footer = styled.div<{ sideInfo: number }>`
   justify-content: ${({ sideInfo }) =>
     sideInfo === 0 ? "flex-end" : "flex-start"};
   gap: 7px;
-  font-size: 10px;
+  font-size: 12px;
   color: ${({ theme }) => theme.COLOR.grey1};
 
   & > div {
