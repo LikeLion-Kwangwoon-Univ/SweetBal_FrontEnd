@@ -11,7 +11,7 @@ for (let i = 0; i < 20; i++) {
     content: "댓글",
     childCount: i,
     likeCount: i,
-    parentCommnetId: -1,
+    parentCommentId: -1,
   });
 }
 
@@ -21,7 +21,7 @@ for (let i = 0; i < 20; i++) {
     sideInfo: 0,
     content: "대댓글",
     likeCount: i,
-    parentCommnetId: 1,
+    parentCommentId: 1,
   });
 }
 

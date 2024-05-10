@@ -7,9 +7,10 @@ import { useRecommentSendMutation } from "../../../query/patch/useRecommentSendM
 
 interface InputMessageProps {
   currentTab: number;
+  parentCommentId: number;
 }
 
-const InputMessage = ({ currentTab }: InputMessageProps) => {
+const InputMessage = ({ currentTab, parentCommentId }: InputMessageProps) => {
   // const uuid = uuidv4();
   const [comment, setComment] = useState<string>("");
   const { mutate: commentSendMutation } = useCommentSendMutation();
@@ -18,16 +19,16 @@ const InputMessage = ({ currentTab }: InputMessageProps) => {
   const handleClickSend = () => {
     if (comment !== "") {
       const sendMessage = {
-        id: `1`,
-        position: "left",
-        message: comment,
-        recomment: 0,
-        liked: 0,
+        selectInfo: 0,
+        content: comment,
       };
 
       currentTab === 1
         ? commentSendMutation(sendMessage)
-        : recommentSendMutation(sendMessage);
+        : recommentSendMutation({
+            ...sendMessage,
+            parentCommentId: parentCommentId,
+          });
     }
     setComment("");
   };

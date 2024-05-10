@@ -4,7 +4,7 @@ export interface BubbleType {
   content: string;
   childCount?: number;
   likeCount: number;
-  parentCommnetId: number;
+  parentCommentId: number;
 }
 
 export interface CommentsQueryType {

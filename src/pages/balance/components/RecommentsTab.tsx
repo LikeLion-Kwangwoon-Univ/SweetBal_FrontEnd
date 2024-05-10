@@ -42,7 +42,10 @@ const RecommentsTab = ({
         ))}
       </S.Content>
 
-      <InputMessage currentTab={currentTab} />
+      <InputMessage
+        currentTab={currentTab}
+        parentCommentId={targetComment?.id as number}
+      />
     </S.Container>
   );
 };
