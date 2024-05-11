@@ -1,17 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { BubbleType } from "../../interface/BubbleInterface";
+import { PostCommentType } from "../../interface/BubbleInterface";
+import CommentsApi from "../../apis/commentsApi";
 
-export const useRecommentSendMutation = (targetId: string) => {
+export const usePostRecomment = (postId: number) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (comment: BubbleType) => {
-      return axios.patch(`/comments/1/recomment/${targetId}`, comment);
+    mutationFn: (comment: PostCommentType) => {
+      return CommentsApi.postRecomment({ postId, comment });
     },
     onSuccess: (res) => {
       console.log("대댓글 추가 성공", res);
       queryClient.invalidateQueries({
-        queryKey: ["balance", "recomments", targetId],
+        queryKey: ["useGetRecomments", postId],
       });
     },
     onError: (error) => {

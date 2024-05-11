@@ -1,3 +1,4 @@
+import { PostCommentType } from "../interface/BubbleInterface";
 import axiosInstance from "./@core";
 
 const PATH = "/goldbalance";
@@ -11,6 +12,8 @@ interface postLikedType extends commentsType {
   like: number;
 }
 
+type postComment = { postId: number; comment: PostCommentType };
+
 const CommentsApi = {
   getComments(postId: number) {
     return axiosInstance.get(`${PATH}/${postId}/comment`);
@@ -23,11 +26,11 @@ const CommentsApi = {
       `${PATH}/${postId}/comment/${commentId}/liked/${like}`
     );
   },
-  postComment({ postId }: commentsType) {
-    return axiosInstance.post(`/${PATH}/${postId}/comment/add`);
+  postComment({ postId, comment }: postComment) {
+    return axiosInstance.post(`${PATH}/${postId}/comment/add`, comment);
   },
-  postRecomment({ postId }: commentsType) {
-    return axiosInstance.post(`/${PATH}/${postId}/recomment/add`);
+  postRecomment({ postId, comment }: postComment) {
+    return axiosInstance.post(`${PATH}/${postId}/recomment/add`, comment);
   },
 };
 

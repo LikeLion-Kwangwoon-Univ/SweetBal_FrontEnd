@@ -11,3 +11,9 @@ export interface CommentsQueryType {
   postId: number;
   commentId?: number | undefined;
 }
+
+export interface PostCommentType {
+  sideInfo: number;
+  content: string;
+  parentCommentId?: number;
+}

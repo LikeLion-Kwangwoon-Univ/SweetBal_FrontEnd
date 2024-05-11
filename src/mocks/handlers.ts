@@ -33,23 +33,4 @@ export const handlers = [
 //     }
 //     return HttpResponse.json(comments);
 //   }),
-
-//   // 댓글 추가
-//   http.patch("/comments/1/comment", async ({ request }) => {
-//     const newComment: BubbleType = (await request.json()) as BubbleType;
-//     comments = [newComment, ...comments];
-//     return HttpResponse.json({
-//       comments: [...comments, newComment],
-//     });
-//   }),
-
-//   // 대댓글 추가
-//   // `/comments/밸런스게임 id/recomment/target id`
-//   http.patch(`/comments/1/recomment/1`, async ({ request }) => {
-//     const newRecomment: BubbleType = (await request.json()) as BubbleType;
-//     recomments = [newRecomment, ...recomments];
-//     return HttpResponse.json({
-//       recomments: [...recomments, newRecomment],
-//     });
-//   }),
 // ];
