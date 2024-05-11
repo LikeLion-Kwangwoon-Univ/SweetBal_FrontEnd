@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { SetStateAction, useState } from "react";
 import CommentsTab from "./CommentsTab";
 import RecommentsTab from "./RecommentsTab";
-import { BubbleType } from "../../../interface/BubbleInterface";
+import { BubbleType } from "../../../interface/CommentsInterface";
 import { useParams } from "react-router-dom";
 import { useGetAllComments } from "../../../hooks/useGetAllComments";
 

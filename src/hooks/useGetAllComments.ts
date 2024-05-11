@@ -1,4 +1,4 @@
-import { CommentsQueryType } from "../interface/BubbleInterface";
+import { CommentsQueryType } from "../interface/CommentsInterface";
 import { useGetComments } from "../query/get/useGetComments";
 import { useGetRecomments } from "../query/get/useGetRecomments";
 

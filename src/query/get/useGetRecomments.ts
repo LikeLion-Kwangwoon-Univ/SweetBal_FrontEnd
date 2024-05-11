@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import CommentsApi from "../../apis/commentsApi";
-import { CommentsQueryType } from "../../interface/BubbleInterface";
+import { CommentsQueryType } from "../../interface/CommentsInterface";
 
 const getRecommentsData = async ({ postId, commentId }: CommentsQueryType) => {
   if (commentId === undefined) return [];

@@ -1,4 +1,4 @@
-import { PostCommentType } from "../interface/BubbleInterface";
+import { PostCommentType } from "../interface/CommentsInterface";
 import axiosInstance from "./@core";
 
 const PATH = "/goldbalance";

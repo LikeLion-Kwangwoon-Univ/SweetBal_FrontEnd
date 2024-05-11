@@ -1,7 +1,7 @@
 import { AiOutlineLeft } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import InputMessage from "./InputMessage";
-import { BubbleType } from "../../../interface/BubbleInterface";
+import { BubbleType } from "../../../interface/CommentsInterface";
 import Bubble from "./Bubble";
 import { SetStateAction } from "react";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { PostCommentType } from "../../interface/BubbleInterface";
+import { PostCommentType } from "../../interface/CommentsInterface";
 import CommentsApi from "../../apis/commentsApi";
 
 export const usePostRecomment = (postId: number) => {
