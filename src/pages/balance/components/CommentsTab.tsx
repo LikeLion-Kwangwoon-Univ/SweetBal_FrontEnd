@@ -1,18 +1,12 @@
 import { AiOutlineDown } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import Bubble from "./Bubble";
-import { BubbleType } from "../../../interface/BubbleInterface";
+import {
+  BubbleType,
+  CommentsTabType,
+} from "../../../interface/CommentsInterface";
 import InputMessage from "./InputMessage";
-import React, { SetStateAction } from "react";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
-
-interface CommentsTabType {
-  currentTab: number;
-  comments: BubbleType[];
-  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
-  setTargetComment: React.Dispatch<SetStateAction<BubbleType | undefined>>;
-  setCurrentTab: React.Dispatch<SetStateAction<number>>;
-}
 
 const CommentsTab = ({
   currentTab,
@@ -43,7 +37,7 @@ const CommentsTab = ({
         ))}
       </S.Content>
 
-      <InputMessage currentTab={currentTab} />
+      <InputMessage currentTab={currentTab} parentCommentId={-1} />
     </S.Container>
   );
 };

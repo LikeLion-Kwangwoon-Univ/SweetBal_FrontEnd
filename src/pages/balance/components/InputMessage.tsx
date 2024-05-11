@@ -1,43 +1,43 @@
 import { useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import styled from "styled-components";
-import { useCommentSendMutation } from "../../../query/patch/useCommentSendMutation";
-import { useRecommentSendMutation } from "../../../query/patch/useRecommentSendMutation";
-// import { v4 as uuidv4 } from "uuid";
+import { usePostComment } from "../../../query/post/usePostComment";
+import { usePostRecomment } from "../../../query/post/usePostRecomment";
 
 interface InputMessageProps {
   currentTab: number;
+  parentCommentId: number;
 }
 
-const InputMessage = ({ currentTab }: InputMessageProps) => {
-  // const uuid = uuidv4();
-  const [comment, setComment] = useState<string>("");
-  const { mutate: commentSendMutation } = useCommentSendMutation();
-  const { mutate: recommentSendMutation } = useRecommentSendMutation("1");
+const InputMessage = ({ currentTab, parentCommentId }: InputMessageProps) => {
+  const postId = 1;
+  // const {params: postId} = useParams();
+  const [content, setContent] = useState<string>("");
+  const { mutate: postComment } = usePostComment(postId);
+  const { mutate: postRecomment } = usePostRecomment(postId);
 
   const handleClickSend = () => {
-    if (comment !== "") {
-      const sendMessage = {
-        id: `1`,
-        position: "left",
-        message: comment,
-        recomment: 0,
-        liked: 0,
-      };
-
+    if (content !== "") {
       currentTab === 1
-        ? commentSendMutation(sendMessage)
-        : recommentSendMutation(sendMessage);
+        ? postComment({
+            sideInfo: 0,
+            content: content,
+          })
+        : postRecomment({
+            sideInfo: 0,
+            content: content,
+            parentCommentId: parentCommentId,
+          });
     }
-    setComment("");
+    setContent("");
   };
 
   return (
     <Container>
       <Input
-        value={comment}
+        value={content}
         size={10}
-        onChange={(e) => setComment(e.target.value)}
+        onChange={(e) => setContent(e.target.value)}
         placeholder={"댓글을 입력해주세요."}
       />
       <AiOutlineSend onClick={handleClickSend} />

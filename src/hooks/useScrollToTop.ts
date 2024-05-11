@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { BubbleType } from "../interface/BubbleInterface";
+import { BubbleType } from "../interface/CommentsInterface";
 
 export const useScrollToTop = (list: BubbleType[]) => {
   const ref = useRef<HTMLDivElement | null>(null);
