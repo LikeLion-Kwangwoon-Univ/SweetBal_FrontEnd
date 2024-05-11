@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BubbleContainer from "./BubbleContainer";
 import { BubbleTabType } from "../../../interface/CommentsInterface";
 import { usePostLiked } from "../../../query/post/usePostLiked";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 const Bubble = ({

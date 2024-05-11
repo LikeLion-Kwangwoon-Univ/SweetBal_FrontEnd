@@ -16,6 +16,21 @@ export interface BubbleTabType {
   setCurrentTab: React.Dispatch<SetStateAction<number>>;
 }
 
+export interface CommentsTabType {
+  currentTab: number;
+  comments: BubbleType[];
+  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
+  setTargetComment: React.Dispatch<SetStateAction<BubbleType | undefined>>;
+  setCurrentTab: React.Dispatch<SetStateAction<number>>;
+}
+
+export interface RecommentsTabType {
+  currentTab: number;
+  recomments: BubbleType[];
+  targetComment: BubbleType | undefined;
+  setCurrentTab: React.Dispatch<SetStateAction<number>>;
+}
+
 export interface CommentsQueryType {
   postId: number;
   commentId?: number | undefined;

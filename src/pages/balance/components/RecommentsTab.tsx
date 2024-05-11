@@ -1,24 +1,19 @@
 import { AiOutlineLeft } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import InputMessage from "./InputMessage";
-import { BubbleType } from "../../../interface/CommentsInterface";
+import {
+  BubbleType,
+  RecommentsTabType,
+} from "../../../interface/CommentsInterface";
 import Bubble from "./Bubble";
-import { SetStateAction } from "react";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
-
-interface RecommentsTab {
-  currentTab: number;
-  recomments: BubbleType[];
-  targetComment: BubbleType | undefined;
-  setCurrentTab: React.Dispatch<SetStateAction<number>>;
-}
 
 const RecommentsTab = ({
   currentTab,
   recomments,
   targetComment,
   setCurrentTab,
-}: RecommentsTab) => {
+}: RecommentsTabType) => {
   const recommentRef = useScrollToTop(recomments);
 
   return (

@@ -3,7 +3,7 @@ import { SetStateAction, useState } from "react";
 import CommentsTab from "./CommentsTab";
 import RecommentsTab from "./RecommentsTab";
 import { BubbleType } from "../../../interface/CommentsInterface";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useGetAllComments } from "../../../hooks/useGetAllComments";
 
 interface CommentsProps {
@@ -11,7 +11,7 @@ interface CommentsProps {
 }
 
 const Comments = ({ setIsOpenComment }: CommentsProps) => {
-  const { params: postId } = useParams();
+  // const { id : postId } = useParams();
   const [currentTab, setCurrentTab] = useState<number>(1);
   const [targetComment, setTargetComment] = useState<BubbleType | undefined>(
     undefined
