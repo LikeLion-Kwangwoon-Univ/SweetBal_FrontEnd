@@ -1,49 +1,76 @@
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useGetList } from "./useGetList";
+import { FlexColumnCSS } from "../../styles/common";
+import { IoIosArrowBack } from "react-icons/io";
+import SingleListBox from "../main/components/singleListBox";
+import styled from "styled-components";
 
-// 한 페이지에서 요청할 아이템수
-const ROWS_PER_PAGE = 8; 
+const queryKey = ["getlist"];
 
-const ProductList = () => {
-  const { products, isLoading, isError, fetchNextPage, isFetchingNextPage } =
-    useSearchProductQuery({
-      rowsPerPage: ROWS_PER_PAGE,
-      // startCount: 몇번째 상품부터 불러올건지 시작인덱스 / row: 받아 올 상품 개수
-      queryFn: (pageParam = 1) =>
-        getSearchProduct({
-          startCount: ROWS_PER_PAGE * (pageParam - 1),
-          row: ROWS_PER_PAGE,
-        }),
+const Page = () => {
+  const { fetchNextPage, hasNextPage, isFetchingNextPage, data } =
+    useInfiniteQuery({
+      queryKey: queryKey,
+      queryFn: useGetList,
+      getNextPageParam: (lastPage) => {
+        return lastPage.nextCursor === -1 ? undefined : lastPage.nextCursor;
+      },
+      initialPageParam: 0,
+      select: (data) => (data.pages ?? []).flatMap((page) => page.lists),
     });
 
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [inView]);
-
-  if (isLoading) {
-    return (
-      <div className={cx("productList")}>
-        <Skeleton />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return <></>;
-  }
-
   return (
-    <div className={cx("productList")}>
-      {products.map((product, index) => {
-        <ProductCard key={index} product={product} />;
-      })}
-
-      {isFetchingNextPage ? <Skeleton /> : <div ref={ref} />}
-    </div>
+    <Border>
+      <Title>
+        <Icon>
+          <IoIosArrowBack />
+        </Icon>
+        최근 등록 밸런스
+      </Title>
+      <Container>
+        {data?.map((lists: LetterType, index: number) => {
+          return <SingleListBox key={index} left_title={left_title} />;
+        })}
+        <button
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage || isFetchingNextPage}
+        >
+          {isFetchingNextPage
+            ? "로딩 중"
+            : hasNextPage
+            ? "더 로드하기"
+            : "더 로드할 것이 없음!"}
+        </button>
+      </Container>
+    </Border>
   );
 };
-export default ProductList;
+
+export default Page;
+
+const Title = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled.div`
+  cursor: pointer;
+`;
+
+const Container = styled.div`
+  ${FlexColumnCSS};
+  align-items: center;
+  margin: 0 auto;
+  height: fit-content;
+  top: 14px;
+`;
+
+const Border = styled.div`
+  ${FlexColumnCSS};
+  height: 100vh;
+`;

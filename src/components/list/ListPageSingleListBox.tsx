@@ -23,7 +23,7 @@ export default ListPageSingleListBox;
 const Container = styled.div`
   ${FlexColumnCSS};
   background-color: white;
-  width: 327px;
+  width: 100%;
   height: 75px;
   border-radius: 10px;
   align-items: center;
@@ -65,4 +65,6 @@ const ViewCountSpan = styled.span`
 const Title = styled.div`
   font-size: 13px;
   font-weight: bold;
+  margin-right: 10px;
+  margin-left: 10px;
 `;

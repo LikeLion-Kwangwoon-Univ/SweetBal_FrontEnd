@@ -2,14 +2,14 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 interface BubbleContainerProps {
-  position: string;
+  sideInfo: number;
   children: ReactNode;
 }
 
-const BubbleContainer = ({ position, children }: BubbleContainerProps) => {
+const BubbleContainer = ({ sideInfo, children }: BubbleContainerProps) => {
   return (
     <Container>
-      {position === "left" ? <LeftTail /> : <RightTail />}
+      {sideInfo === 0 ? <LeftTail /> : <RightTail />}
       {children}
     </Container>
   );

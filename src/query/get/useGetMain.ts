@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import MainApi from '../../apis/mainApi'
 
+
 export interface listType {
 	balanceId: number
 	title1: string

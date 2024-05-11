@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import CommentsApi from "../../apis/commentsApi";
 
-const getComments = async () => {
+const getCommentsData = async (postId: number) => {
   try {
-    const response = await axios.get("/comments/1");
+    const response = await CommentsApi.getComments(postId);
     console.log("댓글 가져오기 성공", response.data);
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,9 +13,9 @@ const getComments = async () => {
   }
 };
 
-export const useCommentsQuery = () => {
+export const useGetComments = (postId: number) => {
   return useQuery({
-    queryKey: ["balance", "comments"],
-    queryFn: () => getComments(),
+    queryKey: ["useGetComments", postId],
+    queryFn: () => getCommentsData(postId),
   });
 };
