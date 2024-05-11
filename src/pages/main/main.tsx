@@ -13,12 +13,10 @@ function MainPage() {
 			</Container>
 		)
 
-	if (data?.length === 0) return <Container>데이터가없네요?</Container>
-
 	return (
 		<Container>
-			{data?.map(() => (
-				<Group4x4ListBox />
+			{data?.response.map(el => (
+				<Group4x4ListBox subject={el.subject} list={el.list} />
 			))}
 		</Container>
 	)

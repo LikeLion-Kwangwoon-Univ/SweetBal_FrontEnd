@@ -1,22 +1,21 @@
 import { styled } from 'styled-components'
 import SingleListBox from './singleListBox'
 import { IoIosArrowForward } from 'react-icons/io'
+import { responseType } from '../../../query/get/useGetMain'
 
-function Group4x4ListBox() {
+function Group4x4ListBox({ subject, list }: responseType) {
 	return (
 		<Container>
 			<Title>
-				최고 인기
+				{subject}
 				<Icon>
 					<IoIosArrowForward />
 				</Icon>
 			</Title>
 			<>
-				{Array(4)
-					.fill(0)
-					.map(() => (
-						<SingleListBox />
-					))}
+				{list.map(() => (
+					<SingleListBox />
+				))}
 			</>
 		</Container>
 	)
