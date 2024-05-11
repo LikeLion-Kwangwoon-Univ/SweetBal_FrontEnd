@@ -13,7 +13,7 @@ for (let i = 0; i < 3; i++) {
 	for (let j = 0; j < 4; j++) {
 		totalMainData.response[i].list.push({
 			balanceId: 1,
-			title1: '오늘은 치킨',
+			title1: '내 마음속 읽기 으므음으ㅡㅇㅇㅇㅇ',
 			title2: '오늘은 피자',
 		})
 	}

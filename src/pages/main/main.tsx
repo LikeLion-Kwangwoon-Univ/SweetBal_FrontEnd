@@ -15,8 +15,8 @@ function MainPage() {
 
 	return (
 		<Container>
-			{data?.response.map(el => (
-				<Group4x4ListBox subject={el.subject} list={el.list} />
+			{data?.response.map((el, idx) => (
+				<Group4x4ListBox key={idx} subject={el.subject} list={el.list} />
 			))}
 		</Container>
 	)
