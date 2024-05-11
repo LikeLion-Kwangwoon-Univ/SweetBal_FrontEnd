@@ -1,22 +1,22 @@
 import { styled } from 'styled-components'
 import SingleListBox from './singleListBox'
 import { IoIosArrowForward } from 'react-icons/io'
+import { responseType } from '../../../query/get/useGetMain'
+import { useNavigate } from 'react-router-dom'
 
-function Group4x4ListBox() {
+function Group4x4ListBox({ subject, list }: responseType) {
+	const navigate = useNavigate()
+	console.log(list)
 	return (
 		<Container>
-			<Title>
-				최고 인기
-				<Icon>
-					<IoIosArrowForward />
-				</Icon>
+			<Title onClick={() => navigate('/list')}>
+				{subject}
+				<IoIosArrowForward />
 			</Title>
 			<>
-				{Array(4)
-					.fill(0)
-					.map(() => (
-						<SingleListBox />
-					))}
+				{list.map((item, idx) => (
+					<SingleListBox key={idx} item={item} />
+				))}
 			</>
 		</Container>
 	)
@@ -38,7 +38,7 @@ const Title = styled.div`
 	* {
 		margin-left: 5px;
 	}
-`
-const Icon = styled.div`
 	cursor: pointer;
+
+	width: fit-content;
 `

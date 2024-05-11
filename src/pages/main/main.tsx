@@ -4,7 +4,6 @@ import useGetMainData from '../../query/get/useGetMain'
 import LoadingPage from '../../components/loading/Loading'
 
 function MainPage() {
-
 	const { data, isLoading } = useGetMainData()
 
 	if (isLoading)
@@ -13,13 +12,11 @@ function MainPage() {
 				<LoadingPage />
 			</Container>
 		)
-
-	if (data?.length === 0) return <Container>데이터가없네요?</Container>
-
+  
 	return (
 		<Container>
-			{data?.map(() => (
-				<Group4x4ListBox />
+			{data?.response.map((el, idx) => (
+				<Group4x4ListBox key={idx} subject={el.subject} list={el.list} />
 			))}
 		</Container>
 	)
