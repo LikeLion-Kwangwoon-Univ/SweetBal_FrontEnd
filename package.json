@@ -42,8 +42,6 @@
 
     "styled-components": "^6.0.2",
 
-    "uuid": "^9.0.1",
-
     "vite-tsconfig-paths": "^4.3.2"
 
   },
