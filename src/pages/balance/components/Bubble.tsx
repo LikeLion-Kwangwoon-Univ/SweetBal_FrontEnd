@@ -42,11 +42,11 @@ const Bubble = ({
   };
 
   return (
-    <Container sideInfo={sideInfo}>
+    <Container $sideInfo={sideInfo}>
       <div className="bubble-box-fit">
         <BubbleContainer sideInfo={sideInfo}>{content}</BubbleContainer>
 
-        <Footer sideInfo={sideInfo}>
+        <Footer $sideInfo={sideInfo}>
           {currentTab === 1 && (
             <div onClick={handleClickRecomment}>
               <span>{childCount}</span>
@@ -63,10 +63,10 @@ const Bubble = ({
   );
 };
 
-export const Container = styled.div<{ sideInfo: number }>`
+export const Container = styled.div<{ $sideInfo: number }>`
   display: flex;
-  justify-content: ${({ sideInfo }) =>
-    sideInfo === 0 ? "flex-start" : "flex-end"};
+  justify-content: ${({ $sideInfo }) =>
+    $sideInfo === 0 ? "flex-start" : "flex-end"};
 
   .bubble-box-fit {
     display: flex;
@@ -75,10 +75,10 @@ export const Container = styled.div<{ sideInfo: number }>`
   }
 `;
 
-export const Footer = styled.div<{ sideInfo: number }>`
+export const Footer = styled.div<{ $sideInfo: number }>`
   display: flex;
-  justify-content: ${({ sideInfo }) =>
-    sideInfo === 0 ? "flex-end" : "flex-start"};
+  justify-content: ${({ $sideInfo }) =>
+    $sideInfo === 0 ? "flex-end" : "flex-start"};
   gap: 7px;
   font-size: 12px;
   color: ${({ theme }) => theme.COLOR.grey1};
