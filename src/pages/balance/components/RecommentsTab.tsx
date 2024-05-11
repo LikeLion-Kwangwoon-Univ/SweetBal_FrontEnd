@@ -6,7 +6,7 @@ import {
   RecommentsTabType,
 } from "../../../interface/CommentsInterface";
 import Bubble from "./Bubble";
-import { useScrollToTop } from "../../../hooks/useScrollToTop";
+import { useScrollToBottom } from "../../../hooks/useScrollToBottom";
 
 const RecommentsTab = ({
   currentTab,
@@ -14,7 +14,7 @@ const RecommentsTab = ({
   targetComment,
   setCurrentTab,
 }: RecommentsTabType) => {
-  const recommentRef = useScrollToTop(recomments);
+  const { ref: recommentRef, scrollToBottom } = useScrollToBottom();
 
   return (
     <S.Container>
@@ -26,10 +26,9 @@ const RecommentsTab = ({
       <S.TargetMessage>{targetComment?.content}</S.TargetMessage>
 
       <S.Content ref={recommentRef}>
-        {recomments.map((comment: BubbleType, index) => (
+        {recomments.map((comment: BubbleType) => (
           <Bubble
-            key={index}
-            // key={comment.id}
+            key={comment.id}
             currentTab={currentTab}
             setCurrentTab={setCurrentTab}
             comment={comment}
@@ -40,6 +39,7 @@ const RecommentsTab = ({
       <InputMessage
         currentTab={currentTab}
         parentCommentId={targetComment?.id as number}
+        scrollToBottom={scrollToBottom}
       />
     </S.Container>
   );
