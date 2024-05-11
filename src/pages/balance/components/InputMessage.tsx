@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import styled from "styled-components";
-import { usePostComment } from "../../../query/post/usePostComment";
-import { usePostRecomment } from "../../../query/post/usePostRecomment";
+import { usePostComment } from "@/query/post/usePostComment";
+import { usePostRecomment } from "@/query/post/usePostRecomment";
 
 interface InputMessageProps {
   currentTab: number;

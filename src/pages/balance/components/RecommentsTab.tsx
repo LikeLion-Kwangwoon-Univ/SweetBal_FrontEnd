@@ -1,12 +1,9 @@
 import { AiOutlineLeft } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import InputMessage from "./InputMessage";
-import {
-  BubbleType,
-  RecommentsTabType,
-} from "../../../interface/CommentsInterface";
+import { BubbleType, RecommentsTabType } from "@/interface/CommentsInterface";
 import Bubble from "./Bubble";
-import { useScrollToTop } from "../../../hooks/useScrollToTop";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const RecommentsTab = ({
   currentTab,

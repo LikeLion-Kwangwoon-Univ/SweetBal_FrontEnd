@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { SetStateAction, useState } from "react";
 import CommentsTab from "./CommentsTab";
 import RecommentsTab from "./RecommentsTab";
-import { BubbleType } from "../../../interface/CommentsInterface";
+import { BubbleType } from "@/interface/CommentsInterface";
 // import { useParams } from "react-router-dom";
-import { useGetAllComments } from "../../../hooks/useGetAllComments";
+import { useGetAllComments } from "@/hooks/useGetAllComments";
 
 interface CommentsProps {
   setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;

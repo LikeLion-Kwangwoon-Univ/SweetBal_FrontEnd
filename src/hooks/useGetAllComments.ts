@@ -1,6 +1,6 @@
-import { CommentsQueryType } from "../interface/CommentsInterface";
-import { useGetComments } from "../query/get/useGetComments";
-import { useGetRecomments } from "../query/get/useGetRecomments";
+import { CommentsQueryType } from "@/interface/CommentsInterface";
+import { useGetComments } from "@/query/get/useGetComments";
+import { useGetRecomments } from "@/query/get/useGetRecomments";
 
 export const useGetAllComments = ({ postId, commentId }: CommentsQueryType) => {
   const getComments = useGetComments(postId);
