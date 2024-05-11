@@ -1,39 +1,29 @@
 import { AiFillHeart, AiOutlineComment, AiOutlineHeart } from "react-icons/ai";
 import styled from "styled-components";
-import React, { SetStateAction, useState } from "react";
 import BubbleContainer from "./BubbleContainer";
-import { BubbleType } from "../../../interface/BubbleInterface";
-import { useLikedMutation } from "../../../query/patch/useLikedMutation";
-import { useUnlikedMutation } from "../../../query/patch/useUnlikedMutation";
-
-interface BubbleInterface {
-  comment: BubbleType;
-  currentTab: number;
-  setTargetComment?: React.Dispatch<SetStateAction<BubbleType | undefined>>;
-  setCurrentTab: React.Dispatch<SetStateAction<number>>;
-}
+import { BubbleTabType } from "../../../interface/CommentsInterface";
+import { usePostLiked } from "../../../query/post/usePostLiked";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const Bubble = ({
   comment,
   currentTab,
   setCurrentTab,
   setTargetComment,
-}: BubbleInterface) => {
-  const { id, sideInfo, content, childCount, likeCount } = comment;
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+}: BubbleTabType) => {
+  const postId = 1;
+  // const { id: postId } = useParams();
+  const { id: commentId, sideInfo, content, childCount, likeCount } = comment;
+  // 0일때 빈 하트, 1일때 빨간 하트
+  const [like, setLike] = useState<number>(0);
   const [likedNum, setLikedNum] = useState(likeCount);
-  const { mutate: likedMutation } = useLikedMutation(id as string);
-  const { mutate: unlikedMutation } = useUnlikedMutation(id as string);
+  const { mutate: postLiked } = usePostLiked({ postId, commentId, like });
 
   const handleClickHeart = () => {
-    if (isLiked) {
-      unlikedMutation();
-      setLikedNum((prev) => prev - 1);
-    } else {
-      likedMutation();
-      setLikedNum((prev) => prev + 1);
-    }
-    setIsLiked(!isLiked);
+    setLikedNum((prev) => (like === 0 ? prev + 1 : prev - 1));
+    setLike(like === 0 ? 1 : 0);
+    postLiked();
   };
 
   const handleClickRecomment = () => {
@@ -55,7 +45,7 @@ const Bubble = ({
           )}
           <div onClick={handleClickHeart}>
             <span>{likedNum}</span>
-            {isLiked ? <AiFillHeart fill="red" /> : <AiOutlineHeart />}
+            {like === 1 ? <AiFillHeart fill="red" /> : <AiOutlineHeart />}
           </div>
         </Footer>
       </div>

@@ -43,4 +43,16 @@ export const postCommentsData = [
       msw_recomments,
     });
   }),
+
+  // 좋아요 추가 및 삭제
+  http.post("/goldbalance/1/comment/1/liked/0", async () => {
+    const commentIndex = msw_comments.findIndex((c) => c.id === 1);
+    if (commentIndex !== -1) {
+      msw_comments[commentIndex] = {
+        ...msw_comments[commentIndex],
+        likeCount: msw_comments[commentIndex].likeCount + 1,
+      };
+    }
+    return HttpResponse.json(msw_comments);
+  }),
 ];
