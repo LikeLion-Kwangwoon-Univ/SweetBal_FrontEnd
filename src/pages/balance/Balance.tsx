@@ -1,3 +1,5 @@
+import { AiOutlineLeft } from 'react-icons/ai'
+import { LiaEyeSolid } from 'react-icons/lia'
 import VSImg from '../../assets/imgs/VSImg.svg'
 import { useEffect, useState } from 'react'
 import SubTitleContent from './SubTitleContent'
@@ -5,6 +7,12 @@ import { GameDataType, InitGameData } from '../../interface/BalanceInterface'
 import {
     Border,
     Wrapper,
+    Bar,
+    SubjectText,
+    SpanWrapper,
+    EyesScore,
+    SizedBox,
+    GameWrapper,
     TitleBox,
     ImgWrapper,
     PercentBox,
@@ -29,6 +37,7 @@ function BalancePage({ subject }: { subject: string }) {
         setGameData(res.data ?? InitGameData)
         setIsLoading(res.isLoading)
     }, [res])
+
 
     const handleSelect = async (num: number) => {
         if (select === 0) {
