@@ -18,7 +18,7 @@ export const postCommentsData = [
     };
     msw_comments.push(newComment);
     return HttpResponse.json({
-      comments: [...msw_comments, newComment],
+      msw_comments,
     });
   }),
 
@@ -40,7 +40,7 @@ export const postCommentsData = [
     };
     msw_recomments.push(newRecomment);
     return HttpResponse.json({
-      recomments: [...msw_recomments, newRecomment],
+      msw_recomments,
     });
   }),
 ];

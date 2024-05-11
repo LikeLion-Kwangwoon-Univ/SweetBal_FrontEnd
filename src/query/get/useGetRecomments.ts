@@ -18,7 +18,7 @@ const getRecommentsData = async ({ postId, commentId }: CommentsQueryType) => {
 
 export const useGetRecomments = ({ postId, commentId }: CommentsQueryType) => {
   return useQuery({
-    queryKey: ["useRecommentsQuery", postId, commentId],
+    queryKey: ["useGetRecomments", postId, commentId],
     queryFn: () => getRecommentsData({ postId, commentId }),
   });
 };
