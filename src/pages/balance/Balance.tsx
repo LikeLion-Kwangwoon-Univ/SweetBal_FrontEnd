@@ -23,13 +23,15 @@ import useGetBalanceData from "../../query/get/useGetBalance";
 import Comments from "./components/Comments";
 import NewBtn from "../../components/Button/newBtn";
 import NavBar from "../../components/navBar/navBar";
+import { useRecoilValue } from "recoil";
+import { isOpenCommentState } from "@/store/comments/atoms";
 
 function BalancePage({ subject }: { subject: string }) {
   const [gameData, setGameData] = useState<GameDataType>(InitGameData);
   const [select, setSelect] = useState(0);
   const [percent, setPercent] = useState(0);
-  const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isOpenComment = useRecoilValue(isOpenCommentState);
 
   const res = useGetBalanceData();
 
@@ -52,7 +54,7 @@ function BalancePage({ subject }: { subject: string }) {
     }
   };
 
-  if (isOpenComment) return <Comments setIsOpenComment={setIsOpenComment} />;
+  if (isOpenComment) return <Comments />;
   return isLoading ? (
     <div>로딩중</div>
   ) : (
@@ -85,7 +87,7 @@ function BalancePage({ subject }: { subject: string }) {
         <SubTitleContent content={gameData.subtitle2}></SubTitleContent>
         <div style={{ height: "108px" }}></div>
       </Wrapper>
-      <NewBtn setIsOpenComment={setIsOpenComment} />
+      <NewBtn />
     </Border>
   );
 }

@@ -5,20 +5,19 @@ import { BubbleTabType } from "@/interface/CommentsInterface";
 import { usePostLiked } from "@/query/post/usePostLiked";
 // import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { currentTabState, targetCommentState } from "@/store/comments/atoms";
 
-const Bubble = ({
-  comment,
-  currentTab,
-  setCurrentTab,
-  setTargetComment,
-}: BubbleTabType) => {
+const Bubble = ({ comment }: BubbleTabType) => {
   const postId = 1;
   // const { id: postId } = useParams();
   const { id: commentId, sideInfo, content, childCount, likeCount } = comment;
   // 0일때 빈 하트, 1일때 빨간 하트
+  const [currentTab, setCurrentTab] = useRecoilState(currentTabState);
   const [like, setLike] = useState<number>(0);
   const [likedNum, setLikedNum] = useState(likeCount);
   const { mutate: postLiked } = usePostLiked({ postId, commentId, like });
+  const setTargetComment = useSetRecoilState(targetCommentState);
 
   const handleClickHeart = () => {
     setLikedNum((prev) => (like === 0 ? prev + 1 : prev - 1));
@@ -43,6 +42,7 @@ const Bubble = ({
               <AiOutlineComment />
             </div>
           )}
+
           <div onClick={handleClickHeart}>
             <span>{likedNum}</span>
             {like === 1 ? <AiFillHeart fill="red" /> : <AiOutlineHeart />}

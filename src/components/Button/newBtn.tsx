@@ -1,15 +1,13 @@
 import { styled } from "styled-components";
 import { FlexCenterCSS } from "../../styles/common";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SetStateAction } from "react";
+import { useSetRecoilState } from "recoil";
+import { isOpenCommentState } from "@/store/comments/atoms";
 
-interface NewBtnProps {
-  setIsOpenComment?: React.Dispatch<SetStateAction<boolean>>;
-}
-
-function NewBtn({ setIsOpenComment }: NewBtnProps) {
+function NewBtn() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const setIsOpenComment = useSetRecoilState(isOpenCommentState);
 
   if (pathname.includes("/balance"))
     return (
