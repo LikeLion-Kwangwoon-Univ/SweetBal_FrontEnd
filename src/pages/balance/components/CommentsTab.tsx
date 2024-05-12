@@ -1,12 +1,9 @@
 import { AiOutlineDown } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import Bubble from "./Bubble";
-import {
-  BubbleType,
-  CommentsTabType,
-} from "../../../interface/CommentsInterface";
+import { BubbleType, CommentsTabType } from "@/interface/CommentsInterface";
 import InputMessage from "./InputMessage";
-import { useScrollToBottom } from "../../../hooks/useScrollToBottom";
+import { useScrollToBottom } from "@/hooks/useScrollToBottom";
 
 const CommentsTab = ({
   currentTab,

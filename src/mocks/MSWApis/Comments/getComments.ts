@@ -1,5 +1,5 @@
 import { HttpResponse, http } from "msw";
-import { BubbleType } from "../../../interface/CommentsInterface";
+import { BubbleType } from "@/interface/CommentsInterface";
 
 export const msw_comments: BubbleType[] = [];
 export const msw_recomments: BubbleType[] = [];

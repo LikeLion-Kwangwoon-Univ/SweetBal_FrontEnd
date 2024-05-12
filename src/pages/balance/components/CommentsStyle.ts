@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexCenterCSS } from "../../../styles/common";
+import { FlexCenterCSS } from "@/styles/common";
 
 export const Container = styled.div`
   display: flex;
