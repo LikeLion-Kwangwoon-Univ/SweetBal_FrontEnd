@@ -1,5 +1,3 @@
-import { SetStateAction } from "react";
-
 export interface BubbleType {
   id: number;
   sideInfo: number;
@@ -15,7 +13,6 @@ export interface BubbleTabType {
 
 export interface CommentsTabType {
   comments: BubbleType[];
-  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export interface RecommentsTabType {

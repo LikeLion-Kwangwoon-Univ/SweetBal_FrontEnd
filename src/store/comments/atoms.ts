@@ -10,3 +10,8 @@ export const targetCommentState = atom<BubbleType | undefined>({
   key: "targetCommentState",
   default: undefined,
 });
+
+export const isOpenCommentState = atom<boolean>({
+  key: "isOpenCommentState",
+  default: false,
+});

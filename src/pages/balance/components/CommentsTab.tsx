@@ -4,9 +4,12 @@ import Bubble from "./Bubble";
 import { BubbleType, CommentsTabType } from "@/interface/CommentsInterface";
 import InputMessage from "./InputMessage";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
+import { useSetRecoilState } from "recoil";
+import { isOpenCommentState } from "@/store/comments/atoms";
 
-const CommentsTab = ({ comments, setIsOpenComment }: CommentsTabType) => {
+const CommentsTab = ({ comments }: CommentsTabType) => {
   const commentRef = useScrollToBottom(comments);
+  const setIsOpenComment = useSetRecoilState(isOpenCommentState);
 
   return (
     <S.Container>
