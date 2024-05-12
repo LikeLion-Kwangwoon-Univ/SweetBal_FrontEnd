@@ -6,11 +6,9 @@ import InputMessage from "./InputMessage";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
 
 const CommentsTab = ({
-  currentTab,
   comments,
   setIsOpenComment,
   setTargetComment,
-  setCurrentTab,
 }: CommentsTabType) => {
   const commentRef = useScrollToBottom(comments);
 
@@ -25,15 +23,13 @@ const CommentsTab = ({
         {comments.map((comment: BubbleType) => (
           <Bubble
             key={comment.id}
-            currentTab={currentTab}
             setTargetComment={setTargetComment}
-            setCurrentTab={setCurrentTab}
             comment={comment}
           />
         ))}
       </S.Content>
 
-      <InputMessage currentTab={currentTab} parentCommentId={-1} />
+      <InputMessage parentCommentId={-1} />
     </S.Container>
   );
 };

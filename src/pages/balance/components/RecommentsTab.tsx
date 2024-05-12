@@ -4,14 +4,12 @@ import InputMessage from "./InputMessage";
 import { BubbleType, RecommentsTabType } from "@/interface/CommentsInterface";
 import Bubble from "./Bubble";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
+import { useSetRecoilState } from "recoil";
+import { currentTabState } from "@/store/comments/atoms";
 
-const RecommentsTab = ({
-  currentTab,
-  recomments,
-  targetComment,
-  setCurrentTab,
-}: RecommentsTabType) => {
+const RecommentsTab = ({ recomments, targetComment }: RecommentsTabType) => {
   const recommentRef = useScrollToBottom(recomments);
+  const setCurrentTab = useSetRecoilState(currentTabState);
 
   return (
     <S.Container>
@@ -24,19 +22,11 @@ const RecommentsTab = ({
 
       <S.Content ref={recommentRef}>
         {recomments.map((comment: BubbleType) => (
-          <Bubble
-            key={comment.id}
-            currentTab={currentTab}
-            setCurrentTab={setCurrentTab}
-            comment={comment}
-          />
+          <Bubble key={comment.id} comment={comment} />
         ))}
       </S.Content>
 
-      <InputMessage
-        currentTab={currentTab}
-        parentCommentId={targetComment?.id as number}
-      />
+      <InputMessage parentCommentId={targetComment?.id as number} />
     </S.Container>
   );
 };

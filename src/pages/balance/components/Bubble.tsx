@@ -5,17 +5,15 @@ import { BubbleTabType } from "@/interface/CommentsInterface";
 import { usePostLiked } from "@/query/post/usePostLiked";
 // import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { currentTabState } from "@/store/comments/atoms";
 
-const Bubble = ({
-  comment,
-  currentTab,
-  setCurrentTab,
-  setTargetComment,
-}: BubbleTabType) => {
+const Bubble = ({ comment, setTargetComment }: BubbleTabType) => {
   const postId = 1;
   // const { id: postId } = useParams();
   const { id: commentId, sideInfo, content, childCount, likeCount } = comment;
   // 0일때 빈 하트, 1일때 빨간 하트
+  const [currentTab, setCurrentTab] = useRecoilState(currentTabState);
   const [like, setLike] = useState<number>(0);
   const [likedNum, setLikedNum] = useState(likeCount);
   const { mutate: postLiked } = usePostLiked({ postId, commentId, like });

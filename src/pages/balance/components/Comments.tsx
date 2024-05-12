@@ -5,6 +5,8 @@ import RecommentsTab from "./RecommentsTab";
 import { BubbleType } from "@/interface/CommentsInterface";
 // import { useParams } from "react-router-dom";
 import { useGetAllComments } from "@/hooks/useGetAllComments";
+import { useRecoilValue } from "recoil";
+import { currentTabState } from "@/store/comments/atoms";
 
 interface CommentsProps {
   setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
@@ -12,7 +14,7 @@ interface CommentsProps {
 
 const Comments = ({ setIsOpenComment }: CommentsProps) => {
   // const { id : postId } = useParams();
-  const [currentTab, setCurrentTab] = useState<number>(1);
+  const currentTab = useRecoilValue(currentTabState);
   const [targetComment, setTargetComment] = useState<BubbleType | undefined>(
     undefined
   );
@@ -31,18 +33,14 @@ const Comments = ({ setIsOpenComment }: CommentsProps) => {
     <Wrapper>
       <TabContainer $currentTab={currentTab}>
         <CommentsTab
-          currentTab={currentTab}
           comments={getCommentsData}
           setIsOpenComment={setIsOpenComment}
           setTargetComment={setTargetComment}
-          setCurrentTab={setCurrentTab}
         />
 
         <RecommentsTab
-          currentTab={currentTab}
           recomments={getRecommentsData}
           targetComment={targetComment}
-          setCurrentTab={setCurrentTab}
         />
       </TabContainer>
     </Wrapper>
