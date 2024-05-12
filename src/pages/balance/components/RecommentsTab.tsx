@@ -3,7 +3,7 @@ import * as S from "./CommentsStyle";
 import InputMessage from "./InputMessage";
 import { BubbleType, RecommentsTabType } from "@/interface/CommentsInterface";
 import Bubble from "./Bubble";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { useScrollToBottom } from "@/hooks/useScrollToBottom";
 
 const RecommentsTab = ({
   currentTab,
@@ -11,7 +11,7 @@ const RecommentsTab = ({
   targetComment,
   setCurrentTab,
 }: RecommentsTabType) => {
-  const recommentRef = useScrollToTop(recomments);
+  const recommentRef = useScrollToBottom(recomments);
 
   return (
     <S.Container>
@@ -23,10 +23,9 @@ const RecommentsTab = ({
       <S.TargetMessage>{targetComment?.content}</S.TargetMessage>
 
       <S.Content ref={recommentRef}>
-        {recomments.map((comment: BubbleType, index) => (
+        {recomments.map((comment: BubbleType) => (
           <Bubble
-            key={index}
-            // key={comment.id}
+            key={comment.id}
             currentTab={currentTab}
             setCurrentTab={setCurrentTab}
             comment={comment}

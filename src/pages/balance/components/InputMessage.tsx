@@ -11,7 +11,7 @@ interface InputMessageProps {
 
 const InputMessage = ({ currentTab, parentCommentId }: InputMessageProps) => {
   const postId = 1;
-  // const {params: postId} = useParams();
+  // const {id: postId} = useParams();
   const [content, setContent] = useState<string>("");
   const { mutate: postComment } = usePostComment(postId);
   const { mutate: postRecomment } = usePostRecomment(postId);

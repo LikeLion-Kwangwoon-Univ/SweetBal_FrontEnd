@@ -28,26 +28,33 @@ const Comments = ({ setIsOpenComment }: CommentsProps) => {
   if (isError) return null;
 
   return (
-    <Container $currentTab={currentTab}>
-      <CommentsTab
-        currentTab={currentTab}
-        comments={getCommentsData}
-        setIsOpenComment={setIsOpenComment}
-        setTargetComment={setTargetComment}
-        setCurrentTab={setCurrentTab}
-      />
+    <Wrapper>
+      <TabContainer $currentTab={currentTab}>
+        <CommentsTab
+          currentTab={currentTab}
+          comments={getCommentsData}
+          setIsOpenComment={setIsOpenComment}
+          setTargetComment={setTargetComment}
+          setCurrentTab={setCurrentTab}
+        />
 
-      <RecommentsTab
-        currentTab={currentTab}
-        recomments={getRecommentsData}
-        targetComment={targetComment}
-        setCurrentTab={setCurrentTab}
-      />
-    </Container>
+        <RecommentsTab
+          currentTab={currentTab}
+          recomments={getRecommentsData}
+          targetComment={targetComment}
+          setCurrentTab={setCurrentTab}
+        />
+      </TabContainer>
+    </Wrapper>
   );
 };
 
-const Container = styled.div<{ $currentTab: number }>`
+const Wrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
+
+const TabContainer = styled.div<{ $currentTab: number }>`
   width: 200%;
   height: 100%;
   display: flex;
