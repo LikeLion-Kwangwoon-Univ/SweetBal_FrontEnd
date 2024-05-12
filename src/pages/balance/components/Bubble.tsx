@@ -42,6 +42,7 @@ const Bubble = ({ comment }: BubbleTabType) => {
               <AiOutlineComment />
             </div>
           )}
+
           <div onClick={handleClickHeart}>
             <span>{likedNum}</span>
             {like === 1 ? <AiFillHeart fill="red" /> : <AiOutlineHeart />}

@@ -1,13 +1,14 @@
 import { AiOutlineDown } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import Bubble from "./Bubble";
-import { BubbleType, CommentsTabType } from "@/interface/CommentsInterface";
+import { BubbleType } from "@/interface/CommentsInterface";
 import InputMessage from "./InputMessage";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
-import { useSetRecoilState } from "recoil";
-import { isOpenCommentState } from "@/store/comments/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { commentsState, isOpenCommentState } from "@/store/comments/atoms";
 
-const CommentsTab = ({ comments }: CommentsTabType) => {
+const CommentsTab = () => {
+  const comments = useRecoilValue(commentsState);
   const commentRef = useScrollToBottom(comments);
   const setIsOpenComment = useSetRecoilState(isOpenCommentState);
 

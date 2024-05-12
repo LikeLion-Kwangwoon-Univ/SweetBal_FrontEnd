@@ -11,14 +11,6 @@ export interface BubbleTabType {
   comment: BubbleType;
 }
 
-export interface CommentsTabType {
-  comments: BubbleType[];
-}
-
-export interface RecommentsTabType {
-  recomments: BubbleType[];
-}
-
 export interface CommentsQueryType {
   postId: number;
   commentId?: number | undefined;

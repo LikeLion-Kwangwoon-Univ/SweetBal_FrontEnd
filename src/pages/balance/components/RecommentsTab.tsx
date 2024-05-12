@@ -1,13 +1,18 @@
 import { AiOutlineLeft } from "react-icons/ai";
 import * as S from "./CommentsStyle";
 import InputMessage from "./InputMessage";
-import { BubbleType, RecommentsTabType } from "@/interface/CommentsInterface";
+import { BubbleType } from "@/interface/CommentsInterface";
 import Bubble from "./Bubble";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { currentTabState, targetCommentState } from "@/store/comments/atoms";
+import {
+  currentTabState,
+  recommentsState,
+  targetCommentState,
+} from "@/store/comments/atoms";
 
-const RecommentsTab = ({ recomments }: RecommentsTabType) => {
+const RecommentsTab = () => {
+  const recomments = useRecoilValue(recommentsState);
   const recommentRef = useScrollToBottom(recomments);
   const targetComment = useRecoilValue(targetCommentState);
   const setCurrentTab = useSetRecoilState(currentTabState);

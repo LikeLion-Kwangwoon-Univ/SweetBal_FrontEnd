@@ -15,3 +15,13 @@ export const isOpenCommentState = atom<boolean>({
   key: "isOpenCommentState",
   default: false,
 });
+
+export const commentsState = atom<BubbleType[]>({
+  key: "commentsState",
+  default: [],
+});
+
+export const recommentsState = atom<BubbleType[]>({
+  key: "recommentsState",
+  default: [],
+});

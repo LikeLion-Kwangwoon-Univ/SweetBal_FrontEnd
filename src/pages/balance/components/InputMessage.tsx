@@ -18,18 +18,13 @@ const InputMessage = ({ parentCommentId }: InputMessageProps) => {
   const { mutate: postComment } = usePostComment(postId);
   const { mutate: postRecomment } = usePostRecomment(postId);
 
+  const sendData = { sideInfo: 0, content: content };
+
   const handleClickSend = () => {
     if (content !== "") {
       currentTab === 1
-        ? postComment({
-            sideInfo: 0,
-            content: content,
-          })
-        : postRecomment({
-            sideInfo: 0,
-            content: content,
-            parentCommentId: parentCommentId,
-          });
+        ? postComment(sendData)
+        : postRecomment({ ...sendData, parentCommentId: parentCommentId });
     }
     setContent("");
   };

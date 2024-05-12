@@ -4,20 +4,14 @@ import RecommentsTab from "./RecommentsTab";
 // import { useParams } from "react-router-dom";
 import { useGetAllComments } from "@/hooks/useGetAllComments";
 import { useRecoilValue } from "recoil";
-import { currentTabState, targetCommentState } from "@/store/comments/atoms";
+import { currentTabState } from "@/store/comments/atoms";
 
 const Comments = () => {
   // const { id : postId } = useParams();
   const currentTab = useRecoilValue(currentTabState);
-  const targetComment = useRecoilValue(targetCommentState);
-
-  const { getCommentsData, getRecommentsData, isLoading, isError } =
-    useGetAllComments({
-      // 게임 params 설정 시, 수정
-      // postId: parseInt(postId as string),
-      postId: 1,
-      commentId: targetComment?.id,
-    });
+  const { isLoading, isError } = useGetAllComments(
+    1 /* parseInt(postId as string)*/
+  );
 
   if (isLoading) return null;
   if (isError) return null;
@@ -25,8 +19,8 @@ const Comments = () => {
   return (
     <Wrapper>
       <TabContainer $currentTab={currentTab}>
-        <CommentsTab comments={getCommentsData} />
-        <RecommentsTab recomments={getRecommentsData} />
+        <CommentsTab />
+        <RecommentsTab />
       </TabContainer>
     </Wrapper>
   );
