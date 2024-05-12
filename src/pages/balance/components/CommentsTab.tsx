@@ -1,27 +1,16 @@
 import { AiOutlineDown } from "react-icons/ai";
-import * as S from "./CommentsStyle";
+import * as S from "./CommentsTabStyle";
 import Bubble from "./Bubble";
-import { BubbleType } from "../../../interface/BubbleInterface";
+import { BubbleType } from "@/interface/CommentsInterface";
 import InputMessage from "./InputMessage";
-import React, { SetStateAction } from "react";
-import { useScrollToTop } from "../../../hooks/useScrollToTop";
+import { useScrollToBottom } from "@/hooks/useScrollToBottom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { commentsState, isOpenCommentState } from "@/store/comments/atoms";
 
-interface CommentsTabType {
-  currentTab: number;
-  comments: BubbleType[];
-  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
-  setTargetComment: React.Dispatch<SetStateAction<BubbleType | undefined>>;
-  setCurrentTab: React.Dispatch<SetStateAction<number>>;
-}
-
-const CommentsTab = ({
-  currentTab,
-  comments,
-  setIsOpenComment,
-  setTargetComment,
-  setCurrentTab,
-}: CommentsTabType) => {
-  const commentRef = useScrollToTop(comments);
+const CommentsTab = () => {
+  const comments = useRecoilValue(commentsState);
+  const commentRef = useScrollToBottom(comments);
+  const setIsOpenComment = useSetRecoilState(isOpenCommentState);
 
   return (
     <S.Container>
@@ -31,19 +20,12 @@ const CommentsTab = ({
       </S.Header>
 
       <S.Content ref={commentRef}>
-        {comments.map((comment: BubbleType, index) => (
-          <Bubble
-            key={index}
-            // key={comment.id}
-            currentTab={currentTab}
-            setTargetComment={setTargetComment}
-            setCurrentTab={setCurrentTab}
-            comment={comment}
-          />
+        {comments.map((comment: BubbleType) => (
+          <Bubble key={comment.id} comment={comment} />
         ))}
       </S.Content>
 
-      <InputMessage currentTab={currentTab} />
+      <InputMessage parentCommentId={-1} />
     </S.Container>
   );
 };

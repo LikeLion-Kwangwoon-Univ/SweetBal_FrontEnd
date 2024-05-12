@@ -1,11 +1,25 @@
+import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
+import { listType } from '../../../query/get/useGetMain'
 
-function SingleListBox() {
+function SingleListBox({ item }: { item: listType }) {
+	const navigate = useNavigate()
+	console.log(item)
 	return (
-		<Container>
-			<Title>{'오늘 저녁을 돈까스 밥으로 '.substr(0, 15) + '...'}</Title>
-			<VS>VS</VS>
-			<Title>{'오늘 저녁을 돈까스 밥으로'.substr(0, 15) + '...'}</Title>
+		<Container onClick={() => navigate('/balance')}>
+			<>
+				<Title>
+					{item.title1.length >= 15
+						? item.title1.substr(0, 15) + '..'
+						: item.title1}
+				</Title>
+				<VS>VS</VS>
+				<Title>
+					{item.title2.length >= 15
+						? item.title2.substr(0, 15) + '..'
+						: item.title2}
+				</Title>
+			</>
 		</Container>
 	)
 }
@@ -23,6 +37,8 @@ const Container = styled.div`
 `
 const Title = styled.div`
 	font-size: 12px;
+	width: 100%;
+	text-align: center;
 `
 const VS = styled.div`
 	font-size: 20px;

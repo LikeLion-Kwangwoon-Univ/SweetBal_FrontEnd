@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { FlexCenterCSS } from "../../../styles/common";
+import { FlexCenterCSS } from "@/styles/common";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 100%;
-  min-height: calc(100vh - 132px - 20px);
+  height: calc(100vh - 132px - 20px);
   padding: 14px;
   box-sizing: border-box;
   border-radius: 13px;

@@ -34,12 +34,7 @@ function RegisterPage() {
     setSubtitle2(event.currentTarget.value);
   };
   useEffect(() => {
-    if (
-      title1.length === 0 ||
-      title2.length === 0 ||
-      subtitle1.length === 0 ||
-      subtitle2.length === 0
-    ) {
+    if (title1.length === 0 || title2.length === 0) {
       setBtnDisable(true);
     } else {
       setBtnDisable(false);

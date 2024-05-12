@@ -1,25 +1,21 @@
 import { AiOutlineLeft } from "react-icons/ai";
-import * as S from "./CommentsStyle";
+import * as S from "./CommentsTabStyle";
 import InputMessage from "./InputMessage";
-import { BubbleType } from "../../../interface/BubbleInterface";
+import { BubbleType } from "@/interface/CommentsInterface";
 import Bubble from "./Bubble";
-import { SetStateAction } from "react";
-import { useScrollToTop } from "../../../hooks/useScrollToTop";
+import { useScrollToBottom } from "@/hooks/useScrollToBottom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  currentTabState,
+  recommentsState,
+  targetCommentState,
+} from "@/store/comments/atoms";
 
-interface RecommentsTab {
-  currentTab: number;
-  recomments: BubbleType[];
-  targetComment: BubbleType | undefined;
-  setCurrentTab: React.Dispatch<SetStateAction<number>>;
-}
-
-const RecommentsTab = ({
-  currentTab,
-  recomments,
-  targetComment,
-  setCurrentTab,
-}: RecommentsTab) => {
-  const recommentRef = useScrollToTop(recomments);
+const RecommentsTab = () => {
+  const recomments = useRecoilValue(recommentsState);
+  const recommentRef = useScrollToBottom(recomments);
+  const targetComment = useRecoilValue(targetCommentState);
+  const setCurrentTab = useSetRecoilState(currentTabState);
 
   return (
     <S.Container>
@@ -28,21 +24,15 @@ const RecommentsTab = ({
         <p>대댓글</p>
       </S.Header>
 
-      <S.TargetMessage>{targetComment?.message}</S.TargetMessage>
+      <S.TargetMessage>{targetComment?.content}</S.TargetMessage>
 
       <S.Content ref={recommentRef}>
-        {recomments.map((comment: BubbleType, index) => (
-          <Bubble
-            key={index}
-            // key={comment.id}
-            currentTab={currentTab}
-            setCurrentTab={setCurrentTab}
-            comment={comment}
-          />
+        {recomments.map((comment: BubbleType) => (
+          <Bubble key={comment.id} comment={comment} />
         ))}
       </S.Content>
 
-      <InputMessage currentTab={currentTab} />
+      <InputMessage parentCommentId={targetComment?.id as number} />
     </S.Container>
   );
 };

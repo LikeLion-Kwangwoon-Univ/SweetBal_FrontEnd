@@ -1,56 +1,43 @@
-import styled from 'styled-components'
-import { SetStateAction, useState } from 'react'
-import { useCommentsQuery } from '../../../query/get/useCommentsQuery'
-import { useRecommentsQuery } from '../../../query/get/useRecommentsQuery'
-import CommentsTab from './CommentsTab'
-import RecommentsTab from './RecommentsTab'
-import { BubbleType } from '../../../interface/BubbleInterface'
+import styled from "styled-components";
+import CommentsTab from "./CommentsTab";
+import RecommentsTab from "./RecommentsTab";
+// import { useParams } from "react-router-dom";
+import { useGetAllComments } from "@/hooks/useGetAllComments";
+import { useRecoilValue } from "recoil";
+import { currentTabState } from "@/store/comments/atoms";
 
-interface CommentsProps {
-	setIsOpenComment: React.Dispatch<SetStateAction<boolean>>
-}
+const Comments = () => {
+  // const { id : postId } = useParams();
+  const currentTab = useRecoilValue(currentTabState);
+  const { isLoading, isError } = useGetAllComments(
+    1 /* parseInt(postId as string)*/
+  );
 
-const Comments = ({ setIsOpenComment }: CommentsProps) => {
-	const [currentTab, setCurrentTab] = useState<number>(1)
-	const [targetComment, setTargetComment] = useState<BubbleType | undefined>(
-		undefined,
-	)
-	const { data: commentsQuery, status: commentsStatus } = useCommentsQuery()
-	const { data: recommentsQuery, status: recommentsStatus } =
-		useRecommentsQuery(targetComment?.id)
+  if (isLoading) return null;
+  if (isError) return null;
 
-	if (commentsStatus === 'pending' || recommentsStatus === 'pending')
-		return null
-	if (commentsStatus === 'error' || recommentsStatus === 'error') return null
+  return (
+    <Wrapper>
+      <TabContainer $currentTab={currentTab}>
+        <CommentsTab />
+        <RecommentsTab />
+      </TabContainer>
+    </Wrapper>
+  );
+};
 
-	return (
-		<Container $currentTab={currentTab}>
-			<CommentsTab
-				currentTab={currentTab}
-				comments={commentsQuery}
-				setIsOpenComment={setIsOpenComment}
-				setTargetComment={setTargetComment}
-				setCurrentTab={setCurrentTab}
-			/>
+const Wrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
 
-			<RecommentsTab
-				currentTab={currentTab}
-				recomments={recommentsQuery}
-				targetComment={targetComment}
-				setCurrentTab={setCurrentTab}
-			/>
-		</Container>
-	)
-}
+const TabContainer = styled.div<{ $currentTab: number }>`
+  width: 200%;
+  height: 100%;
+  display: flex;
+  transition: all 0.3s;
+  transform: ${({ $currentTab }) =>
+    $currentTab === 2 ? "translateX(-50%)" : "translateX(0%)"};
+`;
 
-const Container = styled.div<{ $currentTab: number }>`
-	width: 200%;
-	height: 100%;
-	margin-bottom: 20px;
-	display: flex;
-	transition: all 0.3s;
-	transform: ${({ $currentTab }) =>
-		$currentTab === 2 ? 'translateX(-50%)' : 'translateX(0%)'};
-`
-
-export default Comments
+export default Comments;
