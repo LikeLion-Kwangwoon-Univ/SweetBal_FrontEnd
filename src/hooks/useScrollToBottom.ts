@@ -1,20 +1,21 @@
 import { useEffect, useRef } from "react";
 import { BubbleType } from "../interface/CommentsInterface";
 
-export const useScrollToTop = (list: BubbleType[]) => {
+export const useScrollToBottom = (list: BubbleType[]) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const scrollToTop = () => {
+  const scrollToBottom = () => {
     if (ref && ref.current) {
+      const { scrollHeight, clientHeight } = ref.current;
       ref.current.scrollTo({
-        top: 0,
+        top: scrollHeight - clientHeight,
         behavior: "smooth",
       });
     }
   };
 
   useEffect(() => {
-    scrollToTop();
+    scrollToBottom();
   }, [list]);
 
   return ref;
