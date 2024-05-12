@@ -22,11 +22,12 @@ export const useGetAllComments = (postId: number) => {
   const isError = getComments.isError || getComments.isError;
 
   useEffect(() => {
-    setCommentsState(getComments.data);
+    setCommentsState(getComments.data || []);
+    console.log(getComments.data);
   }, [getComments, setCommentsState]);
 
   useEffect(() => {
-    setReCommentsState(getRecomments.data);
+    setReCommentsState(getRecomments.data || []);
   }, [getRecomments, setReCommentsState]);
 
   return { isLoading, isError };
