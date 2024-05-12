@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { FlexCenterCSS } from '../../styles/common';
 
-export const SizedBox1 = styled.div`
+export const Hspace = styled.div`
   height: 66px;
 `;
 
@@ -20,10 +20,13 @@ export const TitleInput = styled.input`
   &::placeholder {
     color: white;
   }
+  &:focus::placeholder {
+    color: transparent;
+  }
   ${FlexCenterCSS}
 `;
 
-export const DetailInput = styled.input`
+export const DetailInput = styled.textarea`
   width: 285px;
   height: 47px;
   background-color: ${({ theme }) => theme.COLOR.blue1};
@@ -35,9 +38,14 @@ export const DetailInput = styled.input`
   font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
   &::placeholder {
     color: ${({ theme }) => theme.COLOR.grey1};
+    line-height: 43px;
+  }
+  &:focus::placeholder {
+    color: transparent;
   }
   ${FlexCenterCSS}
   text-align: center;
+  resize: none;
 `;
 
 export const AddButton = styled.button`
@@ -47,6 +55,7 @@ export const AddButton = styled.button`
   font-size: 18px;
   font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
   color: white;
-  background-color: ${({ theme }) => theme.COLOR.blue4};
+  background-color: ${(props) =>
+    props.disabled ? '#D9D9D9' : ({ theme }) => theme.COLOR.blue4};
   border: none;
 `;

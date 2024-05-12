@@ -1,11 +1,12 @@
-import { HttpResponse, http } from "msw";
-import { BubbleType } from "../interface/BubbleInterface";
-import { getMainData } from "./MSWApis/Main/getMain";
-import { getBalanceData } from "./MSWApis/Balance/getBalance";
-import { postPickData } from "./MSWApis/Balance/postPick";
+import { HttpResponse, http } from 'msw';
+import { BubbleType } from '../interface/BubbleInterface';
+import { getMainData } from './MSWApis/Main/getMain';
+import { getBalanceData } from './MSWApis/Balance/getBalance';
+import { postPickData } from './MSWApis/Balance/postPick';
+import { postBalanceData } from './MSWApis/Register/postBalance';
 
 let comments: BubbleType[] = [
-  { id: "1", position: "left", message: "comment", recomment: 0, liked: 0 },
+  { id: '1', position: 'left', message: 'comment', recomment: 0, liked: 0 },
 ];
 let recomments: BubbleType[] = [];
 
@@ -13,19 +14,20 @@ export const handlers = [
   ...getMainData,
   ...getBalanceData,
   ...postPickData,
+  ...postBalanceData,
   // 댓글 가져오기
-  http.get("/comments/1", () => {
+  http.get('/comments/1', () => {
     return HttpResponse.json(comments);
   }),
 
   // 대댓글 가져오기
-  http.get("/comments/1/1", () => {
+  http.get('/comments/1/1', () => {
     return HttpResponse.json(recomments);
   }),
 
   // 댓글 좋아요 추가
-  http.patch("/comments/1/liked/1", async () => {
-    const commentIndex = comments.findIndex((c) => c.id === "1");
+  http.patch('/comments/1/liked/1', async () => {
+    const commentIndex = comments.findIndex((c) => c.id === '1');
     if (commentIndex !== -1) {
       comments[commentIndex] = {
         ...comments[commentIndex],
@@ -36,8 +38,8 @@ export const handlers = [
   }),
 
   // 댓글 좋아요 삭제
-  http.patch("/comments/1/unliked/1", async () => {
-    const commentIndex = comments.findIndex((c) => c.id === "1");
+  http.patch('/comments/1/unliked/1', async () => {
+    const commentIndex = comments.findIndex((c) => c.id === '1');
     if (commentIndex !== -1) {
       comments[commentIndex] = {
         ...comments[commentIndex],
@@ -48,7 +50,7 @@ export const handlers = [
   }),
 
   // 댓글 추가
-  http.patch("/comments/1/comment", async ({ request }) => {
+  http.patch('/comments/1/comment', async ({ request }) => {
     const newComment: BubbleType = (await request.json()) as BubbleType;
     comments = [newComment, ...comments];
     return HttpResponse.json({
