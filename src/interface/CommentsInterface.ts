@@ -11,18 +11,15 @@ export interface BubbleType {
 
 export interface BubbleTabType {
   comment: BubbleType;
-  setTargetComment?: React.Dispatch<SetStateAction<BubbleType | undefined>>;
 }
 
 export interface CommentsTabType {
   comments: BubbleType[];
   setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
-  setTargetComment: React.Dispatch<SetStateAction<BubbleType | undefined>>;
 }
 
 export interface RecommentsTabType {
   recomments: BubbleType[];
-  targetComment: BubbleType | undefined;
 }
 
 export interface CommentsQueryType {

@@ -5,11 +5,7 @@ import { BubbleType, CommentsTabType } from "@/interface/CommentsInterface";
 import InputMessage from "./InputMessage";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
 
-const CommentsTab = ({
-  comments,
-  setIsOpenComment,
-  setTargetComment,
-}: CommentsTabType) => {
+const CommentsTab = ({ comments, setIsOpenComment }: CommentsTabType) => {
   const commentRef = useScrollToBottom(comments);
 
   return (
@@ -21,11 +17,7 @@ const CommentsTab = ({
 
       <S.Content ref={commentRef}>
         {comments.map((comment: BubbleType) => (
-          <Bubble
-            key={comment.id}
-            setTargetComment={setTargetComment}
-            comment={comment}
-          />
+          <Bubble key={comment.id} comment={comment} />
         ))}
       </S.Content>
 
