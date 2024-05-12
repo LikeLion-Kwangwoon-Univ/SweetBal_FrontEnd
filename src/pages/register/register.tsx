@@ -11,7 +11,6 @@ import VSImg from '../../assets/imgs/VSImg.svg';
 import { AiOutlineLeft } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import RegisterModal from './modal/modal';
-//import { usePostBalance } from '../../query/post/usePostBalance';
 import RegisterApi from '../../apis/registerApi';
 
 function RegisterPage() {
