@@ -1,5 +1,5 @@
 import { AiOutlineLeft } from "react-icons/ai";
-import * as S from "./CommentsStyle";
+import * as S from "./CommentsTabStyle";
 import InputMessage from "./InputMessage";
 import { BubbleType } from "@/interface/CommentsInterface";
 import Bubble from "./Bubble";
