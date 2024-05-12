@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { BubbleType } from "../interface/CommentsInterface";
 
-export const useScrollToBottom = () => {
+export const useScrollToBottom = (list: BubbleType[]) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
@@ -13,5 +14,9 @@ export const useScrollToBottom = () => {
     }
   };
 
-  return { ref, scrollToBottom };
+  useEffect(() => {
+    scrollToBottom();
+  }, [list]);
+
+  return ref;
 };

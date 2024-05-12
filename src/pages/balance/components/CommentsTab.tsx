@@ -15,7 +15,7 @@ const CommentsTab = ({
   setTargetComment,
   setCurrentTab,
 }: CommentsTabType) => {
-  const { ref: commentRef, scrollToBottom } = useScrollToBottom();
+  const commentRef = useScrollToBottom(comments);
 
   return (
     <S.Container>
@@ -36,11 +36,7 @@ const CommentsTab = ({
         ))}
       </S.Content>
 
-      <InputMessage
-        currentTab={currentTab}
-        parentCommentId={-1}
-        scrollToBottom={scrollToBottom}
-      />
+      <InputMessage currentTab={currentTab} parentCommentId={-1} />
     </S.Container>
   );
 };

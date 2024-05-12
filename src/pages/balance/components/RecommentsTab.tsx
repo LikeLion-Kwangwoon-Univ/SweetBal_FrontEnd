@@ -14,7 +14,7 @@ const RecommentsTab = ({
   targetComment,
   setCurrentTab,
 }: RecommentsTabType) => {
-  const { ref: recommentRef, scrollToBottom } = useScrollToBottom();
+  const recommentRef = useScrollToBottom(recomments);
 
   return (
     <S.Container>
@@ -39,7 +39,6 @@ const RecommentsTab = ({
       <InputMessage
         currentTab={currentTab}
         parentCommentId={targetComment?.id as number}
-        scrollToBottom={scrollToBottom}
       />
     </S.Container>
   );

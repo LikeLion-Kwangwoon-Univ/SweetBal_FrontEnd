@@ -7,14 +7,9 @@ import { usePostRecomment } from "../../../query/post/usePostRecomment";
 interface InputMessageProps {
   currentTab: number;
   parentCommentId: number;
-  scrollToBottom: () => void;
 }
 
-const InputMessage = ({
-  currentTab,
-  parentCommentId,
-  scrollToBottom,
-}: InputMessageProps) => {
+const InputMessage = ({ currentTab, parentCommentId }: InputMessageProps) => {
   const postId = 1;
   // const {id: postId} = useParams();
   const [content, setContent] = useState<string>("");
@@ -34,7 +29,6 @@ const InputMessage = ({
             parentCommentId: parentCommentId,
           });
     }
-    scrollToBottom();
     setContent("");
   };
 
