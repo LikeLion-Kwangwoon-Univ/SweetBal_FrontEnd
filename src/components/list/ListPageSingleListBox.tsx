@@ -1,18 +1,28 @@
 import { IoEyeOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { FlexColumnCSS } from "../../styles/common";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const ListPageSingleListBox = () => {
+const ListPageSingleListBox = ({
+  left_side_title,
+  right_side_title,
+  viewNum,
+  balanceId,
+}) => {
+  const navigate = useNavigate();
+  const navigateToBalance = navigate(`/balance/${balanceId}`);
   return (
-    <Container>
+    // onClick={() => navigateToBalance}
+    <Container onClick={() => navigateToBalance}>
       <BalanceContainer>
-        <Title>{"오늘 저녁을 돈까스 밥으로 ".substr(0, 15) + "..."}</Title>
+        <Title>{left_side_title.substr(0, 15) + "..."}</Title>
         <VS>VS</VS>
-        <Title>{"오늘 저녁을 돈까스 밥으로 ".substr(0, 15) + "..."}</Title>
+        <Title>{right_side_title.substr(0, 15) + "..."}</Title>
       </BalanceContainer>
       <ViewContainer>
         <IoEyeOutline />
-        <ViewCountSpan>{123}</ViewCountSpan>
+        <ViewCountSpan>{viewNum}</ViewCountSpan>
       </ViewContainer>
     </Container>
   );
@@ -24,7 +34,7 @@ const Container = styled.div`
   ${FlexColumnCSS};
   background-color: white;
   width: 100%;
-  height: 75px;
+  padding: 5px 0;
   border-radius: 10px;
   align-items: center;
   /* justify-content: center; */
