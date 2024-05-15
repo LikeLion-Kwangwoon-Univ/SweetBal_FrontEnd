@@ -1,9 +1,9 @@
+import RegisterPage from '@/query/register/register'
 import ErrorPage from '../components/error/Error'
 import Header from '../components/layout/header'
 import BalancePage from '../pages/balance/Balance'
 import ListPage from '../pages/list/ListPage'
 import MainPage from '../pages/main/main'
-import RegisterPage from '../pages/register/register'
 
 const router = [
 	{
