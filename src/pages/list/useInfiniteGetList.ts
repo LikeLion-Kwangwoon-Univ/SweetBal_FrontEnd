@@ -1,14 +1,13 @@
-import { useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const mockServerURL = "https://mock-server-url";
-const path = "/list";
-const apiEndpoint = `${mockServerURL}${path}`;
+const ServerUrl = "https://localhost8080";
+const path = "/goldbalance/list/lastest";
+const apiEndpoint = `${ServerUrl}${path}`;
 
 const Getlist = async ({ pageParam = 0 }) => {
-  const url = pageParam
-    ? `${apiEndpoint}?next-cursor=${pageParam}`
-    : apiEndpoint;
+  const pageSize = 5;
+  const url = `${apiEndpoint}?cursor=${pageParam}&pageSize=${pageSize}`;
   const response = await axios.get(url);
   const lists = response.data;
   return lists;
@@ -25,6 +24,7 @@ const useInfiniteGetList = () => {
     status,
   } = useInfiniteQuery(["project"], Getlist, {
     getNextPageParam: (lastPage) => {
+      // Assuming your backend returns -1 for the last page
       return lastPage.nextCursor === -1 ? undefined : lastPage.nextCursor;
     },
     select: (data) => ({
@@ -32,10 +32,15 @@ const useInfiniteGetList = () => {
       pageParams: data.pageParams,
     }),
   });
+
   return {
     data,
     error,
-    fetchNextPage,
+    fetchNextPage: () => {
+      const nextPageCursor =
+        data?.pages[data?.pages.length - 1]?.nextCursor ?? 0;
+      fetchNextPage({ pageParam: nextPageCursor });
+    },
     hasNextPage,
     isFetching,
     isFetchingNextPage,

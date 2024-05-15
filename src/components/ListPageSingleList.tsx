@@ -1,34 +1,46 @@
 import { IoEyeOutline } from "react-icons/io5";
 import styled from "styled-components";
-import { FlexColumnCSS } from "../styles/common";
-import React from "react";
 
-const ListPageSingleListBox = () => {
+import { useNavigate } from "react-router-dom";
+import { FlexColumnCSS } from "@/styles/common";
+
+interface ListPageSingleListProps {
+  list: {
+    id: number;
+    leftSideTitle: string;
+    rightSideTitle: string;
+  };
+}
+
+const ListPageSingleList = ({ list }: ListPageSingleListProps) => {
+  const { id, leftSideTitle, rightSideTitle } = list;
+  const navigate = useNavigate();
+  const navigateToBalance = () => navigate(`/balance/${id}`);
+
   return (
-    <Container>
+    <Container onClick={navigateToBalance}>
       <BalanceContainer>
-        <Title>{"오늘 저녁을 돈까스 밥으로 ".substr(0, 15) + "..."}</Title>
+        <Title>{leftSideTitle.substr(0, 15) + "..."}</Title>
         <VS>VS</VS>
-        <Title>{"오늘 저녁을 돈까스 밥으로 ".substr(0, 15) + "..."}</Title>
+        <Title>{rightSideTitle.substr(0, 15) + "..."}</Title>
       </BalanceContainer>
       <ViewContainer>
         <IoEyeOutline />
-        <ViewCountSpan>{111}</ViewCountSpan>
+        <ViewCountSpan>{123}</ViewCountSpan>
       </ViewContainer>
     </Container>
   );
 };
 
-export default ListPageSingleListBox;
+export default ListPageSingleList;
 
 const Container = styled.div`
   ${FlexColumnCSS};
   background-color: white;
-  width: 327px;
-  height: 75px;
+  width: 100%;
+  padding: 5px 0;
   border-radius: 10px;
   align-items: center;
-  /* justify-content: center; */
   cursor: pointer;
   margin: 0 auto;
   margin-bottom: 14px;
@@ -66,4 +78,6 @@ const ViewCountSpan = styled.span`
 const Title = styled.div`
   font-size: 13px;
   font-weight: bold;
+  margin-right: 10px;
+  margin-left: 10px;
 `;

@@ -1,17 +1,17 @@
-import styled from "styled-components";
-import { IoIosArrowBack } from "react-icons/io";
-import { FlexColumnCSS } from "../../styles/common";
-import ListPageSingleListBox from "../../components/list/ListPageSingleListBox";
 import React, { useEffect } from "react";
+import { IoIosArrowBack } from "react-icons/io";
 import { useInView } from "react-intersection-observer";
-import LoadingPage from "../../components/loading/Loading";
 import useInfiniteGetList from "./useInfiniteGetList";
+import LoadingPage from "@/components/loading/Loading";
+import styled from "styled-components";
+import { FlexColumnCSS } from "@/styles/common";
+import SingleListBox from "../main/components/singleListBox";
+import ListPageSingleList from "@/components/ListPageSingleList";
 
 type listType = {
-  balanceId: number;
-  left_side_title: string;
-  right_side_title: string;
-  viewNum: number;
+  id: number;
+  leftSideTitle: string;
+  rightSideTitle: string;
 };
 
 function ListPage() {
@@ -32,23 +32,18 @@ function ListPage() {
         최근 등록 밸런스
       </Title>
       <Container>
-        {data?.map((list: listType, index: number) => {
-          return (
-            <ListPageSingleListBox
-              key={index}
-              balanceId={list.balanceId}
-              left_side_title={list.left_side_title}
-              right_side_title={list.right_side_title}
-              viewNum={list.viewNum}
-            />
-          );
-        })}
-        {isFetchingNextPage ? <LoadingPage /> : <div ref={ref} />}
+        {data?.pages.map((page, pageIndex) => (
+          <React.Fragment key={pageIndex}>
+            {page.map((list: listType) => (
+              <ListPageSingleList key={list.id} list={list} />
+            ))}
+          </React.Fragment>
+        ))}
+        {isFetchingNextPage ? "Loading..." : <div ref={ref} />}
       </Container>
     </Border>
   );
 }
-export default ListPage;
 
 const Title = styled.div`
   font-size: 20px;
