@@ -1,18 +1,34 @@
-import { CommentsQueryType } from "../interface/CommentsInterface";
-import { useGetComments } from "../query/get/useGetComments";
-import { useGetRecomments } from "../query/get/useGetRecomments";
+import { useGetComments } from "@/query/get/useGetComments";
+import { useGetRecomments } from "@/query/get/useGetRecomments";
+import {
+  commentsState,
+  recommentsState,
+  targetCommentState,
+} from "@/store/comments/atoms";
+import { useEffect } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
-export const useGetAllComments = ({ postId, commentId }: CommentsQueryType) => {
+export const useGetAllComments = (postId: number) => {
   const getComments = useGetComments(postId);
-  const getRecomments = useGetRecomments({ postId, commentId });
+  const targetComment = useRecoilValue(targetCommentState);
+  const getRecomments = useGetRecomments({
+    postId,
+    commentId: targetComment?.id,
+  });
+  const setCommentsState = useSetRecoilState(commentsState);
+  const setReCommentsState = useSetRecoilState(recommentsState);
 
   const isLoading = getComments.isLoading || getRecomments.isLoading;
   const isError = getComments.isError || getComments.isError;
 
-  return {
-    getCommentsData: getComments.data,
-    getRecommentsData: getRecomments.data,
-    isLoading,
-    isError,
-  };
+  useEffect(() => {
+    setCommentsState(getComments.data || []);
+    console.log(getComments.data);
+  }, [getComments, setCommentsState]);
+
+  useEffect(() => {
+    setReCommentsState(getRecomments.data || []);
+  }, [getRecomments, setReCommentsState]);
+
+  return { isLoading, isError };
 };

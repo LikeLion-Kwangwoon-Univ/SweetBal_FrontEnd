@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import { listType } from '../../../query/get/useGetMain'
 import strAddDots from '../../../utils/strAddDots'
 
+
 function SingleListBox({ item }: { item: listType }) {
 	const navigate = useNavigate()
 	console.log(item)

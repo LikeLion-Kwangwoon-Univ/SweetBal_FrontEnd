@@ -13,7 +13,7 @@ function MainPage() {
 				<LoadingPage />
 			</Container>
 		)
-
+  
 	return (
 		<Container>
 			{data?.response.map((el, idx) => (

@@ -1,43 +1,40 @@
-import { styled } from 'styled-components'
-import { FlexCenterCSS } from '../../styles/common'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { SetStateAction } from 'react'
+import { styled } from "styled-components";
+import { FlexCenterCSS } from "../../styles/common";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isOpenCommentState } from "@/store/comments/atoms";
 
-interface NewBtnProps {
-	setIsOpenComment?: React.Dispatch<SetStateAction<boolean>>
+function NewBtn() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const setIsOpenComment = useSetRecoilState(isOpenCommentState);
+
+  if (pathname.includes("/balance"))
+    return (
+      <Container onClick={() => setIsOpenComment && setIsOpenComment(true)}>
+        댓글
+      </Container>
+    );
+  else if (pathname.includes("/list"))
+    return <Container onClick={() => navigate("/register")}>New</Container>;
+  else return null;
 }
-
-function NewBtn({ setIsOpenComment }: NewBtnProps) {
-	const { pathname } = useLocation()
-	const navigate = useNavigate()
-
-	const HandleNew = () => {
-		if (pathname === '/balance' && setIsOpenComment) setIsOpenComment(true)
-		else navigate('/register')
-	}
-
-	return (
-		<Container onClick={HandleNew}>
-			{pathname === '/balance' ? '댓글' : 'New'}
-		</Container>
-	)
-}
-export default NewBtn
+export default NewBtn;
 
 const Container = styled.div`
-	width: 63px;
-	height: 63px;
-	position: fixed;
-	border-radius: 50%;
-	bottom: 60px;
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
 
-	${FlexCenterCSS}
-	border: 4px solid ${({ theme }) => theme.COLOR.blue4};
-	cursor: pointer;
-	animation: fadeIn forwards;
-	&:hover {
-		scale: 1.05;
-	}
-	right: 40%;
-	background-color: white;
-`
+  ${FlexCenterCSS}
+  border: 4px solid ${({ theme }) => theme.COLOR.blue4};
+  cursor: pointer;
+  animation: fadeIn forwards;
+  &:hover {
+    scale: 1.05;
+  }
+  background-color: white;
+`;
