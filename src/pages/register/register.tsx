@@ -1,14 +1,14 @@
+import VSImg from '../../assets/imgs/VSImg.svg';
+import { AiOutlineLeft } from 'react-icons/ai';
 import {
+  Bar,
   Border,
   Wrapper,
-  Bar,
   SubjectText,
   GameWrapper,
   ImgWrapper,
 } from '../balance/BalanceStyle';
 import { Hspace, TitleInput, DetailInput, AddButton } from './registerStyle';
-import VSImg from '../../assets/imgs/VSImg.svg';
-import { AiOutlineLeft } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import RegisterModal from './modal/modal';
 import RegisterApi from '../../apis/registerApi';
