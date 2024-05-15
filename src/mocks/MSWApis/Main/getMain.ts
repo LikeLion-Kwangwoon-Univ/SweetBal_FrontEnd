@@ -17,10 +17,8 @@ for (let i = 0; i < 3; i++) {
       title2: "오늘은 피자",
     });
   }
-
 }
 export const getMainData = [
-
   http.get("/goldbalance/home", () => {
     return HttpResponse.json(totalMainData);
   }),
