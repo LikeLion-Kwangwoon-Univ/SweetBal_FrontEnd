@@ -5,6 +5,7 @@ import LoadingPage from '../../components/loading/Loading'
 
 function MainPage() {
 	const { data, isLoading } = useGetMainData()
+	console.log(data)
 
 	if (isLoading)
 		return (
@@ -12,7 +13,7 @@ function MainPage() {
 				<LoadingPage />
 			</Container>
 		)
-  
+
 	return (
 		<Container>
 			{data?.response.map((el, idx) => (
