@@ -18,7 +18,6 @@ for (let i = 0; i < 3; i++) {
     });
   }
 }
-
 export const getMainData = [
   http.get("/goldbalance/home", () => {
     return HttpResponse.json(totalMainData);

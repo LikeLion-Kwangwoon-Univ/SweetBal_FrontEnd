@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { FlexColumnCSS } from "@/styles/common";
-
-interface ListPageSingleListProps {
+interface ListPageSingleListBoxProps {
   list: {
     id: number;
     leftSideTitle: string;
@@ -12,7 +11,7 @@ interface ListPageSingleListProps {
   };
 }
 
-const ListPageSingleList = ({ list }: ListPageSingleListProps) => {
+const ListPageSingleListBox = ({ list }: ListPageSingleListBoxProps) => {
   const { id, leftSideTitle, rightSideTitle } = list;
   const navigate = useNavigate();
   const navigateToBalance = () => navigate(`/balance/${id}`);
@@ -32,7 +31,7 @@ const ListPageSingleList = ({ list }: ListPageSingleListProps) => {
   );
 };
 
-export default ListPageSingleList;
+export default ListPageSingleListBox;
 
 const Container = styled.div`
   ${FlexColumnCSS};

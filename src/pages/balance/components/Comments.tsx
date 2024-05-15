@@ -1,28 +1,17 @@
 import styled from "styled-components";
-import { SetStateAction, useState } from "react";
 import CommentsTab from "./CommentsTab";
 import RecommentsTab from "./RecommentsTab";
-import { BubbleType } from "@/interface/CommentsInterface";
 // import { useParams } from "react-router-dom";
 import { useGetAllComments } from "@/hooks/useGetAllComments";
+import { useRecoilValue } from "recoil";
+import { currentTabState } from "@/store/comments/atoms";
 
-interface CommentsProps {
-  setIsOpenComment: React.Dispatch<SetStateAction<boolean>>;
-}
-
-const Comments = ({ setIsOpenComment }: CommentsProps) => {
+const Comments = () => {
   // const { id : postId } = useParams();
-  const [currentTab, setCurrentTab] = useState<number>(1);
-  const [targetComment, setTargetComment] = useState<BubbleType | undefined>(
-    undefined
+  const currentTab = useRecoilValue(currentTabState);
+  const { isLoading, isError } = useGetAllComments(
+    1 /* parseInt(postId as string)*/
   );
-  const { getCommentsData, getRecommentsData, isLoading, isError } =
-    useGetAllComments({
-      // 게임 params 설정 시, 수정
-      // postId: parseInt(postId as string),
-      postId: 1,
-      commentId: targetComment?.id,
-    });
 
   if (isLoading) return null;
   if (isError) return null;
@@ -30,20 +19,8 @@ const Comments = ({ setIsOpenComment }: CommentsProps) => {
   return (
     <Wrapper>
       <TabContainer $currentTab={currentTab}>
-        <CommentsTab
-          currentTab={currentTab}
-          comments={getCommentsData}
-          setIsOpenComment={setIsOpenComment}
-          setTargetComment={setTargetComment}
-          setCurrentTab={setCurrentTab}
-        />
-
-        <RecommentsTab
-          currentTab={currentTab}
-          recomments={getRecommentsData}
-          targetComment={targetComment}
-          setCurrentTab={setCurrentTab}
-        />
+        <CommentsTab />
+        <RecommentsTab />
       </TabContainer>
     </Wrapper>
   );

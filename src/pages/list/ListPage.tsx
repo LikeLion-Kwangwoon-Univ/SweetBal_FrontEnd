@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { useInView } from "react-intersection-observer";
 import useInfiniteGetList from "./useInfiniteGetList";
-import LoadingPage from "@/components/loading/Loading";
+
 import styled from "styled-components";
 import { FlexColumnCSS } from "@/styles/common";
-import SingleListBox from "../main/components/singleListBox";
-import ListPageSingleList from "@/components/ListPageSingleList";
+import ListPageSingleListBox from "@/components/list/ListPageSingleListBox";
 
 type listType = {
   id: number;
@@ -32,10 +31,17 @@ function ListPage() {
         최근 등록 밸런스
       </Title>
       <Container>
-        {data?.pages.map((page, pageIndex) => (
+        {/* {data?.pages.map((page, pageIndex) => (
           <React.Fragment key={pageIndex}>
             {page.map((list: listType) => (
-              <ListPageSingleList key={list.id} list={list} />
+              <ListPageSingleListBox key={list.id} list={list} />
+            ))}
+          </React.Fragment>
+        ))} */}
+        {data?.pages.map((page, pageIndex) => (
+          <React.Fragment key={pageIndex}>
+            {page.postList.map((list: listType) => (
+              <ListPageSingleListBox key={list.id} list={list} />
             ))}
           </React.Fragment>
         ))}
@@ -44,6 +50,8 @@ function ListPage() {
     </Border>
   );
 }
+
+export default ListPage;
 
 const Title = styled.div`
   font-size: 20px;
@@ -62,6 +70,7 @@ const Container = styled.div`
   ${FlexColumnCSS};
   align-items: center;
   margin: 0 auto;
+  padding: none;
   padding: none;
   height: fit-content;
   width: 100%;

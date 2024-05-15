@@ -1,16 +1,19 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const ServerUrl = "https://localhost8080";
-const path = "/goldbalance/list/lastest";
+const ServerUrl = "http://localhost:8080"; // URL 형식을 확인
+const path = "/posts/latest";
 const apiEndpoint = `${ServerUrl}${path}`;
 
 const Getlist = async ({ pageParam = 0 }) => {
-  const pageSize = 5;
-  const url = `${apiEndpoint}?cursor=${pageParam}&pageSize=${pageSize}`;
+  const url = `${apiEndpoint}?cursor=${pageParam}`;
   const response = await axios.get(url);
-  const lists = response.data;
-  return lists;
+  const list = response.data.postList; // postList 배열을 추출
+  console.log(list);
+  return {
+    postList: list,
+    nextCursor: response.data.nextCursor,
+  };
 };
 
 const useInfiniteGetList = () => {
@@ -24,13 +27,8 @@ const useInfiniteGetList = () => {
     status,
   } = useInfiniteQuery(["project"], Getlist, {
     getNextPageParam: (lastPage) => {
-      // Assuming your backend returns -1 for the last page
       return lastPage.nextCursor === -1 ? undefined : lastPage.nextCursor;
     },
-    select: (data) => ({
-      pages: data.pages,
-      pageParams: data.pageParams,
-    }),
   });
 
   return {

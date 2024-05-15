@@ -1,14 +1,14 @@
+import { SizedBox1, TitleInput, DetailInput, AddButton } from "./registerStyle";
+import VSImg from "../../assets/imgs/VSImg.svg";
+import { AiOutlineLeft } from "react-icons/ai";
 import {
+  Bar,
   Border,
   Wrapper,
-  Bar,
   SubjectText,
   GameWrapper,
   ImgWrapper,
-} from '../balance/BalanceStyle';
-import { SizedBox1, TitleInput, DetailInput, AddButton } from './registerStyle';
-import VSImg from '../../assets/imgs/VSImg.svg';
-import { AiOutlineLeft } from 'react-icons/ai';
+} from "@/pages/balance/BalanceStyle";
 
 function RegisterPage() {
   return (
@@ -23,13 +23,13 @@ function RegisterPage() {
           </Bar>
           <SizedBox1 />
           <GameWrapper>
-            <TitleInput placeholder='내용을 적어주세요.' />
-            <DetailInput placeholder='내용을 적어주세요.' />
+            <TitleInput placeholder="내용을 적어주세요." />
+            <DetailInput placeholder="내용을 적어주세요." />
             <ImgWrapper>
               <img src={VSImg} />
             </ImgWrapper>
-            <TitleInput placeholder='내용을 적어주세요.' />
-            <DetailInput placeholder='내용을 적어주세요.' />
+            <TitleInput placeholder="내용을 적어주세요." />
+            <DetailInput placeholder="내용을 적어주세요." />
           </GameWrapper>
           <SizedBox1 />
           <AddButton>등록</AddButton>
