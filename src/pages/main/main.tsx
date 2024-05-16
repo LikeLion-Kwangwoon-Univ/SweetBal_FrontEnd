@@ -4,8 +4,7 @@ import useGetMainData from '../../query/get/useGetMain'
 import LoadingPage from '../../components/loading/Loading'
 
 function MainPage() {
-	const { data, isLoading } = useGetMainData()
-	console.log(data)
+	const { data: mainData, isLoading } = useGetMainData()
 
 	if (isLoading)
 		return (
@@ -13,11 +12,15 @@ function MainPage() {
 				<LoadingPage />
 			</Container>
 		)
-  
+
 	return (
 		<Container>
-			{data?.response.map((el, idx) => (
-				<Group4x4ListBox key={idx} subject={el.subject} list={el.list} />
+			{mainData?.allPostList.map((el, idx) => (
+				<Group4x4ListBox
+					key={idx}
+					subject={el.subject}
+					postList={el.postList}
+				/>
 			))}
 		</Container>
 	)
