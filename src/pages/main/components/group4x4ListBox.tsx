@@ -4,9 +4,9 @@ import { IoIosArrowForward } from 'react-icons/io'
 import { responseType } from '../../../query/get/useGetMain'
 import { useNavigate } from 'react-router-dom'
 
-function Group4x4ListBox({ subject, list }: responseType) {
+function Group4x4ListBox({ subject, postList }: responseType) {
 	const navigate = useNavigate()
-	console.log(list)
+
 	return (
 		<Container>
 			<Title onClick={() => navigate('/list')}>
@@ -14,7 +14,7 @@ function Group4x4ListBox({ subject, list }: responseType) {
 				<IoIosArrowForward />
 			</Title>
 			<>
-				{list.map((item, idx) => (
+				{postList.map((item, idx) => (
 					<SingleListBox key={idx} item={item} />
 				))}
 			</>

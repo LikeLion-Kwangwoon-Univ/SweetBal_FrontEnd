@@ -1,19 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import MainApi from '../../apis/mainApi'
 
-
 export interface listType {
-	balanceId: number
-	title1: string
-	title2: string
+	id: number
+	leftSideTitle: string
+	rightSideTitle: string
 }
 export interface responseType {
 	subject: string
-	list: listType[]
+	postList: listType[]
 }
 export interface getMainDataType {
 	status: number
-	response: responseType[]
+	allPostList: responseType[]
 }
 
 const getMainData = async () => {
