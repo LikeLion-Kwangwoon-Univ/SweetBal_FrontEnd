@@ -6,6 +6,7 @@ import LoadingPage from '../../components/loading/Loading'
 function MainPage() {
 	const { data: mainData, isLoading } = useGetMainData()
 
+
 	if (isLoading)
 		return (
 			<Container>

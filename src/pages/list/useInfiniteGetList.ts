@@ -1,17 +1,19 @@
-import { useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const mockServerURL = "https://mock-server-url";
-const path = "/list";
-const apiEndpoint = `${mockServerURL}${path}`;
+const ServerUrl = "http://localhost:8080"; // URL 형식을 확인
+const path = "/posts/latest";
+const apiEndpoint = `${ServerUrl}${path}`;
 
 const Getlist = async ({ pageParam = 0 }) => {
-  const url = pageParam
-    ? `${apiEndpoint}?next-cursor=${pageParam}`
-    : apiEndpoint;
+  const url = `${apiEndpoint}?cursor=${pageParam}`;
   const response = await axios.get(url);
-  const lists = response.data;
-  return lists;
+  const list = response.data.postList; // postList 배열을 추출
+  console.log(list);
+  return {
+    postList: list,
+    nextCursor: response.data.nextCursor,
+  };
 };
 
 const useInfiniteGetList = () => {
@@ -27,15 +29,16 @@ const useInfiniteGetList = () => {
     getNextPageParam: (lastPage) => {
       return lastPage.nextCursor === -1 ? undefined : lastPage.nextCursor;
     },
-    select: (data) => ({
-      pages: data.pages,
-      pageParams: data.pageParams,
-    }),
   });
+
   return {
     data,
     error,
-    fetchNextPage,
+    fetchNextPage: () => {
+      const nextPageCursor =
+        data?.pages[data?.pages.length - 1]?.nextCursor ?? 0;
+      fetchNextPage({ pageParam: nextPageCursor });
+    },
     hasNextPage,
     isFetching,
     isFetchingNextPage,
