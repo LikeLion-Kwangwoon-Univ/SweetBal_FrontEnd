@@ -1,24 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { listType } from '../../../query/get/useGetMain'
+import strAddDots from '../../../utils/strAddDots'
 
 function SingleListBox({ item }: { item: listType }) {
 	const navigate = useNavigate()
-	console.log(item)
+
 	return (
 		<Container onClick={() => navigate('/balance')}>
 			<>
-				<Title>
-					{item.title1.length >= 15
-						? item.title1.substr(0, 15) + '..'
-						: item.title1}
-				</Title>
+				<Title>{strAddDots(item.leftSideTitle)}</Title>
 				<VS>VS</VS>
-				<Title>
-					{item.title2.length >= 15
-						? item.title2.substr(0, 15) + '..'
-						: item.title2}
-				</Title>
+				<Title>{strAddDots(item.rightSideTitle)}</Title>
 			</>
 		</Container>
 	)

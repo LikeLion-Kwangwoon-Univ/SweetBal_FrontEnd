@@ -3,31 +3,28 @@ import { AiOutlineSend } from "react-icons/ai";
 import styled from "styled-components";
 import { usePostComment } from "@/query/post/usePostComment";
 import { usePostRecomment } from "@/query/post/usePostRecomment";
+import { useRecoilValue } from "recoil";
+import { currentTabState } from "@/store/comments/atoms";
 
 interface InputMessageProps {
-  currentTab: number;
   parentCommentId: number;
 }
 
-const InputMessage = ({ currentTab, parentCommentId }: InputMessageProps) => {
+const InputMessage = ({ parentCommentId }: InputMessageProps) => {
   const postId = 1;
   // const {id: postId} = useParams();
+  const currentTab = useRecoilValue(currentTabState);
   const [content, setContent] = useState<string>("");
   const { mutate: postComment } = usePostComment(postId);
   const { mutate: postRecomment } = usePostRecomment(postId);
 
+  const sendData = { sideInfo: 0, content: content };
+
   const handleClickSend = () => {
     if (content !== "") {
       currentTab === 1
-        ? postComment({
-            sideInfo: 0,
-            content: content,
-          })
-        : postRecomment({
-            sideInfo: 0,
-            content: content,
-            parentCommentId: parentCommentId,
-          });
+        ? postComment(sendData)
+        : postRecomment({ ...sendData, parentCommentId: parentCommentId });
     }
     setContent("");
   };

@@ -11,14 +11,6 @@ const MainApi: MainApiType = {
 	getMain() {
 		return axiosInstance.get(PATH)
 	},
-	/* 
-    EX)
-    getJoinList({ meetingId }) {
-		return axiosInstance.get(`${PATH}/${meetingId}`, {
-			params: { meetingId },
-		})
-	},
-    */
 }
 
 export default MainApi

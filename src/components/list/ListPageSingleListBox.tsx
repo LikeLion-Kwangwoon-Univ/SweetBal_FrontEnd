@@ -1,28 +1,31 @@
 import { IoEyeOutline } from "react-icons/io5";
 import styled from "styled-components";
-import { FlexColumnCSS } from "../../styles/common";
-import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const ListPageSingleListBox = ({
-  left_side_title,
-  right_side_title,
-  viewNum,
-  balanceId,
-}) => {
+import { useNavigate } from "react-router-dom";
+import { FlexColumnCSS } from "@/styles/common";
+interface ListPageSingleListBoxProps {
+  list: {
+    id: number;
+    leftSideTitle: string;
+    rightSideTitle: string;
+  };
+}
+
+const ListPageSingleListBox = ({ list }: ListPageSingleListBoxProps) => {
+  const { id, leftSideTitle, rightSideTitle } = list;
   const navigate = useNavigate();
-  const navigateToBalance = navigate(`/balance/${balanceId}`);
+  const navigateToBalance = () => navigate(`/balance/${id}`);
+
   return (
-    // onClick={() => navigateToBalance}
-    <Container onClick={() => navigateToBalance}>
+    <Container onClick={navigateToBalance}>
       <BalanceContainer>
-        <Title>{left_side_title.substr(0, 15) + "..."}</Title>
+        <Title>{leftSideTitle.substr(0, 15) + "..."}</Title>
         <VS>VS</VS>
-        <Title>{right_side_title.substr(0, 15) + "..."}</Title>
+        <Title>{rightSideTitle.substr(0, 15) + "..."}</Title>
       </BalanceContainer>
       <ViewContainer>
         <IoEyeOutline />
-        <ViewCountSpan>{viewNum}</ViewCountSpan>
+        <ViewCountSpan>{122}</ViewCountSpan>
       </ViewContainer>
     </Container>
   );
@@ -37,7 +40,6 @@ const Container = styled.div`
   padding: 5px 0;
   border-radius: 10px;
   align-items: center;
-  /* justify-content: center; */
   cursor: pointer;
   margin: 0 auto;
   margin-bottom: 14px;

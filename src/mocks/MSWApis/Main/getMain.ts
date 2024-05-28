@@ -3,22 +3,21 @@ import { getMainDataType } from "../../../query/get/useGetMain";
 
 const totalMainData: getMainDataType = {
   status: 200,
-  response: [],
+  allPostList: [],
 };
 for (let i = 0; i < 3; i++) {
-  totalMainData.response.push({
+  totalMainData.allPostList.push({
     subject: "최고인기",
-    list: [],
+    postList: [],
   });
   for (let j = 0; j < 4; j++) {
-    totalMainData.response[i].list.push({
-      balanceId: 1,
-      title1: "내 마음속 읽기 으므음으ㅡㅇㅇㅇㅇ",
-      title2: "오늘은 피자",
+    totalMainData.allPostList[i].postList.push({
+      id: 1,
+      leftSideTitle: "내 마음속 읽기 으므음으ㅡㅇㅇㅇㅇ",
+      rightSideTitle: "오늘은 피자",
     });
   }
 }
-
 export const getMainData = [
   http.get("/goldbalance/home", () => {
     return HttpResponse.json(totalMainData);
