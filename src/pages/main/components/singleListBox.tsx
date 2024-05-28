@@ -3,16 +3,15 @@ import { styled } from 'styled-components'
 import { listType } from '../../../query/get/useGetMain'
 import strAddDots from '../../../utils/strAddDots'
 
-
 function SingleListBox({ item }: { item: listType }) {
 	const navigate = useNavigate()
-	console.log(item)
+
 	return (
 		<Container onClick={() => navigate('/balance')}>
 			<>
-				<Title>{strAddDots(item.title1)}</Title>
+				<Title>{strAddDots(item.leftSideTitle)}</Title>
 				<VS>VS</VS>
-				<Title>{strAddDots(item.title2)}</Title>
+				<Title>{strAddDots(item.rightSideTitle)}</Title>
 			</>
 		</Container>
 	)
