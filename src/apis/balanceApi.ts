@@ -5,13 +5,13 @@ const balancePATH = '/balance'
 const pickPATH = '/pick'
 
 type BalanceApiType = {
-    getBalance(): Promise<AxiosResponse>
+    getBalance(id: number): Promise<AxiosResponse>
     postPick(num: number): Promise<AxiosResponse>
 }
 
 const BalanceApi: BalanceApiType = {
-    getBalance() {
-        return axiosInstance.get(balancePATH)
+    getBalance(id: number) {
+        return axiosInstance.get(balancePATH + `/${id}`)
     },
     postPick(num: number) {
         return axiosInstance.post(pickPATH, {
