@@ -1,22 +1,22 @@
-import { AxiosResponse } from 'axios';
-import axiosInstance from './@core';
+import { AxiosResponse } from 'axios'
+import axiosInstance from './@core'
 
-const PATH = '/goldbalance/posts/make';
+const PATH = '/posts/make'
 
 type RegisterApiType = {
-  postBalance(newBalance: newBalanceType): Promise<AxiosResponse>;
-};
+	postBalance(newBalance: newBalanceType): Promise<AxiosResponse>
+}
 export interface newBalanceType {
-  left_Side_Title: string;
-  right_Side_Title: string;
-  left_Side_Detail: string;
-  right_Side_Detail: string;
+	leftSideTitle: string
+	rightSideTitle: string
+	leftSideDetail: string
+	rightSideDetail: string
 }
 
 const RegisterApi: RegisterApiType = {
-  postBalance(newBalance) {
-    return axiosInstance.post(PATH, newBalance);
-  },
-};
+	postBalance(newBalance) {
+		return axiosInstance.post(PATH, newBalance)
+	},
+}
 
-export default RegisterApi;
+export default RegisterApi
