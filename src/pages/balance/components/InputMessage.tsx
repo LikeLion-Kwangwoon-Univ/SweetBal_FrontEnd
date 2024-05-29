@@ -55,6 +55,10 @@ const Container = styled.div`
   font-size: 18px;
   border-radius: 7px;
   color: ${({ theme }) => theme.COLOR.grey1};
+
+  & > svg {
+    cursor: pointer;
+  }
 `;
 
 const Input = styled.input`
