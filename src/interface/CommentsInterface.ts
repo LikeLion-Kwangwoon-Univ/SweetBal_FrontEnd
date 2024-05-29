@@ -23,7 +23,7 @@ export interface PostCommentType {
 }
 
 export interface LikedQueryType {
-  postId: number;
+  postId: string | undefined;
   commentId: number;
   like: number;
 }
