@@ -12,6 +12,7 @@ import { Hspace, TitleInput, DetailInput, AddButton } from './registerStyle';
 import { useEffect, useState } from 'react';
 import RegisterModal from './modal/modal';
 import RegisterApi from '../../apis/registerApi';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const [title1, setTitle1] = useState('');
@@ -20,6 +21,7 @@ function RegisterPage() {
   const [subtitle2, setSubtitle2] = useState('');
   const [btnDisable, setBtnDisable] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
   const handleTitle1 = (event: React.FormEvent<HTMLInputElement>) => {
     setTitle1(event.currentTarget.value);
   };
@@ -41,16 +43,22 @@ function RegisterPage() {
   }, [title1, title2, subtitle1, subtitle2]);
 
   const handleSubmit = () => {
-    setIsModalOpen(true);
     RegisterApi.postBalance({
-      left_Side_Title: title1,
-      left_Side_Detail: subtitle1,
-      right_Side_Title: title2,
-      right_Side_Detail: subtitle2,
+      leftSideTitle: title1,
+      leftSideDetail: subtitle1,
+      rightSideTitle: title2,
+      rightSideDetail: subtitle2,
+    }).then((res) => {
+      if (res.status === 200) {
+        setIsModalOpen(true);
+      } else {
+        return;
+      }
     });
   };
   const closeModal = () => {
     setIsModalOpen(false);
+    navigate('/');
   };
 
   return (
