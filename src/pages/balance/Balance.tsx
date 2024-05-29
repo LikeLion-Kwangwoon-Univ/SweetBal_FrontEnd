@@ -1,9 +1,8 @@
 import VSImg from '../../assets/imgs/VSImg.svg'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SubTitleContent from './SubTitleContent'
 import { styled, keyframes } from 'styled-components'
 import { FlexCenterCSS, FlexColumnCSS } from '../../styles/common'
-import { GameDataType, InitGameData } from '../../interface/BalanceInterface'
 import BalanceApi from '../../apis/balanceApi'
 import useGetBalanceData from '../../query/get/useGetBalance'
 import Comments from './components/Comments'
@@ -14,49 +13,40 @@ import { isOpenCommentState } from '@/store/comments/atoms'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 function BalancePage() {
-    const [gameData, setGameData] = useState<GameDataType>(InitGameData)
-    const [select, setSelect] = useState(0)
-    const [percent, setPercent] = useState(0)
-    const [isLoading, setIsLoading] = useState<boolean>(true)
-    const isOpenComment = useRecoilValue(isOpenCommentState)
     const id: number = Number(useParams<{ id: string }>().id)
     const [searchParams, _] = useSearchParams()
+    const { data: gameData, status } = useGetBalanceData(id)
+    const [select, setSelect] = useState('')
+    const [percent, setPercent] = useState(0)
+    const isOpenComment = useRecoilValue(isOpenCommentState)
 
-    const res = useGetBalanceData(id)
-
-    useEffect(() => {
-        setGameData(res.data ?? InitGameData)
-        setIsLoading(res.isLoading)
-    }, [res])
-
-    const handleSelect = async (num: number) => {
-        if (select === 0) {
-            setSelect(num)
-
-            let [people1, people2] = [gameData.people1, gameData.people2]
-            num === 1 ? (people1 += 1) : (people2 += 1)
-
-            const total = people1 + people2
-            setPercent(Math.round((people1 / total) * 100))
-
-            BalanceApi.postPick(num)
+    const handleSelect = async (userSelect: string) => {
+        if (select === '') {
+            setSelect(userSelect)
+            await BalanceApi.postPick(id, userSelect)
+            const total = gameData!.leftSideVote + gameData!.rightSideVote + 1
+            const leftVote =
+                userSelect === 'left'
+                    ? gameData!.leftSideVote + 1
+                    : gameData!.leftSideVote
+            setPercent(Math.round((leftVote / total) * 100))
         }
     }
 
     if (isOpenComment) return <Comments />
-    return isLoading ? (
-        <div>로딩중</div>
-    ) : (
+    if (status === 'loading') return <div>로딩중</div>
+    if (status === 'error') return <div>에러가 발생했습니다</div>
+
+    return (
         <Border>
             <NavBar
                 title={searchParams.get('type') || ''}
                 url="/"
-                views={gameData.eyesScore}
+                views={gameData.leftSideVote + gameData.rightSideVote}
             ></NavBar>
             <Wrapper>
-                <div style={{ height: '87px' }}></div>
-                <TitleBox onClick={() => handleSelect(1)}>
-                    {gameData.title1}
+                <TitleBox onClick={() => handleSelect('left')}>
+                    {gameData.leftSideTitle}
                 </TitleBox>
                 {select ? (
                     <PercentWrapper>
@@ -67,12 +57,14 @@ function BalancePage() {
                 ) : (
                     <div style={{ height: '36px' }}></div>
                 )}
-                <SubTitleContent content={gameData.subtitle1}></SubTitleContent>
+                <SubTitleContent
+                    content={gameData.leftSideDetail}
+                ></SubTitleContent>
                 <ImgWrapper>
                     <img src={VSImg}></img>
                 </ImgWrapper>
-                <TitleBox onClick={() => handleSelect(2)}>
-                    {gameData.title2}
+                <TitleBox onClick={() => handleSelect('right')}>
+                    {gameData.rightSideTitle}
                 </TitleBox>
                 {select ? (
                     <PercentWrapper>
@@ -83,8 +75,9 @@ function BalancePage() {
                 ) : (
                     <div style={{ height: '36px' }}></div>
                 )}
-                <SubTitleContent content={gameData.subtitle2}></SubTitleContent>
-                <div style={{ height: '108px' }}></div>
+                <SubTitleContent
+                    content={gameData.rightSideDetail}
+                ></SubTitleContent>
             </Wrapper>
             <NewBtn />
         </Border>
@@ -110,6 +103,7 @@ const Wrapper = styled.div`
     ${FlexColumnCSS};
     justify-content: space-between;
     align-items: center;
+    padding: 87px 0 108px 0;
 `
 
 const TitleBox = styled.div`

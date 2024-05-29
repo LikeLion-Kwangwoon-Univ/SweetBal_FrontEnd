@@ -1,22 +1,20 @@
 import { AxiosResponse } from 'axios'
 import axiosInstance from './@core'
 
-const balancePATH = '/balance'
-const pickPATH = '/pick'
+const balancePath = '/goldbalance/posts'
+const selectPath = '/goldbalance/select'
 
 type BalanceApiType = {
     getBalance(id: number): Promise<AxiosResponse>
-    postPick(num: number): Promise<AxiosResponse>
+    postPick(id: number, select: string): Promise<AxiosResponse>
 }
 
 const BalanceApi: BalanceApiType = {
     getBalance(id: number) {
-        return axiosInstance.get(balancePATH + `/${id}`)
+        return axiosInstance.get(`${balancePath}/${id}`)
     },
-    postPick(num: number) {
-        return axiosInstance.post(pickPATH, {
-            select: num,
-        })
+    postPick(id: number, select: string) {
+        return axiosInstance.post(`${selectPath}/${id}/${select}`)
     },
 }
 

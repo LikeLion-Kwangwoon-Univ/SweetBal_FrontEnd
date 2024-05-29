@@ -8,11 +8,12 @@ const getBalanceData = async (id: number): Promise<GameDataType> => {
 }
 
 const useGetBalanceData = (id: number) => {
-    const { data, isLoading } = useQuery<GameDataType, boolean>(
+    const balanceDataQuery = useQuery<GameDataType, boolean>(
         ['useGetBalanceData'],
         () => getBalanceData(id)
     )
-    return { data, isLoading }
+
+    return balanceDataQuery
 }
 
 export default useGetBalanceData
