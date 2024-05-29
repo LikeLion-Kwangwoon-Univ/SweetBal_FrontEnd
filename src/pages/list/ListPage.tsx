@@ -6,6 +6,7 @@ import useInfiniteGetList from "./useInfiniteGetList";
 import styled from "styled-components";
 import { FlexColumnCSS } from "@/styles/common";
 import ListPageSingleListBox from "@/components/list/ListPageSingleListBox";
+import { useNavigate } from "react-router-dom";
 
 type listType = {
   id: number;
@@ -16,6 +17,8 @@ type listType = {
 function ListPage() {
   const { data, isFetchingNextPage, fetchNextPage } = useInfiniteGetList();
   const { ref, inView } = useInView();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (inView) {
       fetchNextPage();
@@ -25,7 +28,7 @@ function ListPage() {
   return (
     <Border>
       <Title>
-        <Icon>
+        <Icon onClick={() => navigate(-1)}>
           <IoIosArrowBack />
         </Icon>
         최근 등록 밸런스
