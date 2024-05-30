@@ -25,3 +25,8 @@ export const recommentsState = atom<BubbleType[]>({
   key: "recommentsState",
   default: [],
 });
+
+export const selectsState = atom<string>({
+  key: "selectsState",
+  default: "",
+});
