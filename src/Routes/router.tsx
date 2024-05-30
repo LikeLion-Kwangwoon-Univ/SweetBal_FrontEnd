@@ -1,4 +1,4 @@
-import RegisterPage from "@/pages/register/register";
+import RegisterPage from "@/query/register/register";
 import ErrorPage from "../components/error/Error";
 import Header from "../components/layout/header";
 import BalancePage from "../pages/balance/Balance";
@@ -21,10 +21,6 @@ const router = [
       {
         path: "/balance/:subject/:id",
         element: <BalancePage />,
-      },
-      {
-        path: "/list",
-        element: <ListPage />,
       },
       {
         path: "/register",

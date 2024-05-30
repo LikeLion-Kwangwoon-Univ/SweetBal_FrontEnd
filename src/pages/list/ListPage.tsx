@@ -6,7 +6,7 @@ import useInfiniteGetList from "./useInfiniteGetList";
 import styled from "styled-components";
 import { FlexColumnCSS } from "@/styles/common";
 import ListPageSingleListBox from "@/components/list/ListPageSingleListBox";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type listType = {
   id: number;
@@ -15,7 +15,10 @@ type listType = {
 };
 
 function ListPage() {
-  const { data, isFetchingNextPage, fetchNextPage } = useInfiniteGetList();
+  const { subject } = useParams<{ subject: string }>();
+  const validType = subject || "defaultType";
+  const { data, fetchNextPage, isFetchingNextPage } =
+    useInfiniteGetList(validType);
   const { ref, inView } = useInView();
   const navigate = useNavigate();
 
@@ -31,7 +34,7 @@ function ListPage() {
         <Icon onClick={() => navigate(-1)}>
           <IoIosArrowBack />
         </Icon>
-        최근 등록 밸런스
+        {subject + " 등록 밸런스"}
       </Title>
       <Container>
         {data?.pages.map((page, pageIndex) => (
