@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { usePostComment } from "@/query/post/usePostComment";
 import { usePostRecomment } from "@/query/post/usePostRecomment";
 import { useRecoilValue } from "recoil";
-import { currentTabState } from "@/store/comments/atoms";
+import { currentTabState, selectsState } from "@/store/comments/atoms";
 import { useParams } from "react-router-dom";
 
 interface InputMessageProps {
@@ -13,6 +13,7 @@ interface InputMessageProps {
 
 const InputMessage = ({ parentCommentId }: InputMessageProps) => {
   const { id: postId } = useParams();
+  const selects = useRecoilValue(selectsState);
   const currentTab = useRecoilValue(currentTabState);
   const [content, setContent] = useState<string>("");
   const { mutate: postComment } = usePostComment(parseInt(postId as string));
@@ -20,7 +21,7 @@ const InputMessage = ({ parentCommentId }: InputMessageProps) => {
     parseInt(postId as string)
   );
 
-  const sendData = { sideInfo: 0, content: content };
+  const sendData = { sideInfo: selects === "left" ? 0 : 1, content: content };
 
   const handleClickSend = () => {
     if (content !== "") {
