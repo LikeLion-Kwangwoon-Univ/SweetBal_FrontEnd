@@ -2,17 +2,18 @@ import { useQuery } from '@tanstack/react-query'
 import BalanceApi from '../../apis/balanceApi'
 import { GameDataType } from '../../interface/BalanceInterface'
 
-const getBalanceData = async (): Promise<GameDataType> => {
-    const res = await BalanceApi.getBalance()
+const getBalanceData = async (id: number): Promise<GameDataType> => {
+    const res = await BalanceApi.getBalance(id)
     return res.data
 }
 
-const useGetBalanceData = () => {
-    const { data, isLoading } = useQuery<GameDataType, boolean>(
+const useGetBalanceData = (id: number) => {
+    const balanceDataQuery = useQuery<GameDataType, boolean>(
         ['useGetBalanceData'],
-        () => getBalanceData()
+        () => getBalanceData(id)
     )
-    return { data, isLoading }
+    console.log(balanceDataQuery.data)
+    return balanceDataQuery
 }
 
 export default useGetBalanceData

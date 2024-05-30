@@ -4,8 +4,8 @@ import CommentsApi from "../../apis/commentsApi";
 const getCommentsData = async (postId: number) => {
   try {
     const response = await CommentsApi.getComments(postId);
-    console.log("댓글 가져오기 성공", response.data);
-    return response.data;
+    console.log("댓글 가져오기 성공", response.data.commentList);
+    return response.data.commentList;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.log("댓글 가져오기 실패", e);

@@ -3,11 +3,11 @@ import { styled } from 'styled-components'
 import { listType } from '../../../query/get/useGetMain'
 import strAddDots from '../../../utils/strAddDots'
 
-function SingleListBox({ item }: { item: listType }) {
+function SingleListBox({ item, subject }: { item: listType; subject: string }) {
 	const navigate = useNavigate()
 
 	return (
-		<Container onClick={() => navigate('/balance')}>
+		<Container onClick={() => navigate(`/balance/${subject}/${item.id}`)}>
 			<>
 				<Title>{strAddDots(item.leftSideTitle)}</Title>
 				<VS>VS</VS>

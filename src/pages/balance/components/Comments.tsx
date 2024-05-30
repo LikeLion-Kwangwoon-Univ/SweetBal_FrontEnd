@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import CommentsTab from "./CommentsTab";
 import RecommentsTab from "./RecommentsTab";
-// import { useParams } from "react-router-dom";
 import { useGetAllComments } from "@/hooks/useGetAllComments";
 import { useRecoilValue } from "recoil";
 import { currentTabState } from "@/store/comments/atoms";
+import { useParams } from "react-router-dom";
 
 const Comments = () => {
-  // const { id : postId } = useParams();
+  const { id: postId } = useParams();
   const currentTab = useRecoilValue(currentTabState);
-  const { isLoading, isError } = useGetAllComments(
-    1 /* parseInt(postId as string)*/
-  );
+  const { isLoading, isError } = useGetAllComments(parseInt(postId as string));
 
   if (isLoading) return null;
   if (isError) return null;

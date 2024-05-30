@@ -9,13 +9,17 @@ function Group4x4ListBox({ subject, postList }: responseType) {
 
 	return (
 		<Container>
-			<Title onClick={() => navigate('/list')}>
+			<Title onClick={() => navigate(`/list/${subject.split(' ')[0]}`)}>
 				{subject}
 				<IoIosArrowForward />
 			</Title>
 			<>
 				{postList.map((item, idx) => (
-					<SingleListBox key={idx} item={item} />
+					<SingleListBox
+						key={idx}
+						item={item}
+						subject={subject.split(' ')[0]}
+					/>
 				))}
 			</>
 		</Container>
