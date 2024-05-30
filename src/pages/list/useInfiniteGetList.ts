@@ -10,7 +10,7 @@ const Getlist = async ({
   const url = `${path}?cursor=${pageParam}`;
   const response = await axiosInstance.get(url);
   const list = response.data.postList;
-  console.log(list);
+
   return {
     postList: list,
     nextCursor: response.data.nextCursor,

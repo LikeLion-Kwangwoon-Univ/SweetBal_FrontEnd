@@ -12,15 +12,5 @@ export const usePostLiked = ({ postId, commentId, like }: LikedQueryType) => {
         like,
       });
     },
-    onSuccess: (res) => {
-      like === 1
-        ? console.log("좋아요 추가 성공", res)
-        : console.log("좋아요 삭제 성공", res);
-    },
-    onError: (error) => {
-      like === 1
-        ? console.log("좋아요 추가 실패", error)
-        : console.log("좋아요 삭제 실패", error);
-    },
   });
 };

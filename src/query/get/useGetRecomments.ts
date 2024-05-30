@@ -7,11 +7,10 @@ const getRecommentsData = async ({ postId, commentId }: CommentsQueryType) => {
 
   try {
     const response = await CommentsApi.getRecomments({ postId, commentId });
-    console.log("대댓글 가져오기 성공", response.data.commentList);
+
     return response.data.commentList;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    console.log("대댓글 가져오기 실패", e);
     throw new Error(e.response?.data?.message);
   }
 };

@@ -9,13 +9,10 @@ export const usePostComment = (postId: number) => {
       return CommentsApi.postComment({ postId, comment });
     },
     onSuccess: (res) => {
-      console.log("댓글 추가 성공", res);
       queryClient.invalidateQueries({
         queryKey: ["useGetComments", postId],
       });
     },
-    onError: (error) => {
-      console.log("댓글 추가 실패", error);
-    },
+    onError: (error) => {},
   });
 };

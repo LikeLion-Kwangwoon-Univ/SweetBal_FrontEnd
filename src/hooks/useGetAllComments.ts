@@ -23,7 +23,6 @@ export const useGetAllComments = (postId: number) => {
 
   useEffect(() => {
     setCommentsState(getComments.data || []);
-    console.log(getComments.data);
   }, [getComments, setCommentsState]);
 
   useEffect(() => {
