@@ -6,42 +6,42 @@ import ListPage from '../pages/list/ListPage'
 import MainPage from '../pages/main/main'
 
 const router = [
-    {
-        path: '/',
-        element: <Header />,
-        children: [
-            {
-                path: '/',
-                element: <MainPage />,
-            },
-            {
-                path: '/list',
-                element: <ListPage />,
-            },
-            {
-                path: '/balance/:id',
-                element: <BalancePage />,
-            },
-            {
-                path: '/list',
-                element: <ListPage />,
-            },
-            {
-                path: '/register',
-                element: <RegisterPage />,
-            },
-        ],
-    },
-    {
-        path: '/',
-        element: <Header />,
-        children: [
-            {
-                path: '/*',
-                element: <ErrorPage />,
-            },
-        ],
-    },
+	{
+		path: '/',
+		element: <Header />,
+		children: [
+			{
+				path: '/',
+				element: <MainPage />,
+			},
+			{
+				path: '/list/:subject',
+				element: <ListPage />,
+			},
+			{
+				path: '/balance/:subject/:id',
+				element: <BalancePage />,
+			},
+			{
+				path: '/list',
+				element: <ListPage />,
+			},
+			{
+				path: '/register',
+				element: <RegisterPage />,
+			},
+		],
+	},
+	{
+		path: '/',
+		element: <Header />,
+		children: [
+			{
+				path: '/*',
+				element: <ErrorPage />,
+			},
+		],
+	},
 ]
 
 export default router
