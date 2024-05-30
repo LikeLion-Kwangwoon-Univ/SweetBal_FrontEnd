@@ -12,7 +12,7 @@ const useGetBalanceData = (id: number) => {
         ['useGetBalanceData'],
         () => getBalanceData(id)
     )
-
+    console.log(balanceDataQuery.data)
     return balanceDataQuery
 }
 
