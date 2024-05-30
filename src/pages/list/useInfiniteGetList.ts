@@ -1,8 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const ServerUrl = "http://localhost:8080"; // URL 형식을 확인
-const path = "/posts/latest";
+// /goldbalance/list/lastest?cursor=${pageParam}
+
+const ServerUrl = "http://3.38.21.57:8080/goldbalance"; // URL 형식을 확인
+const path = "/list/latest";
 const apiEndpoint = `${ServerUrl}${path}`;
 
 const Getlist = async ({ pageParam = 0 }) => {

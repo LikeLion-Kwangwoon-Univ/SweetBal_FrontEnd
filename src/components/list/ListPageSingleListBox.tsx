@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { FlexColumnCSS } from "@/styles/common";
+import strAddDots from "@/utils/strAddDots";
+
 interface ListPageSingleListBoxProps {
   list: {
     id: number;
@@ -19,9 +21,9 @@ const ListPageSingleListBox = ({ list }: ListPageSingleListBoxProps) => {
   return (
     <Container onClick={navigateToBalance}>
       <BalanceContainer>
-        <Title>{leftSideTitle.substr(0, 15) + "..."}</Title>
+        <Title>{strAddDots(leftSideTitle)}</Title>
         <VS>VS</VS>
-        <Title>{rightSideTitle.substr(0, 15) + "..."}</Title>
+        <Title>{strAddDots(rightSideTitle)}</Title>
       </BalanceContainer>
       <ViewContainer>
         <IoEyeOutline />

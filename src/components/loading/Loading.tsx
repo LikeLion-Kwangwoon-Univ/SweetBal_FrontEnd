@@ -3,7 +3,6 @@ import { FlexCenterCSS, FlexColumnCSS } from "../../styles/common";
 import { SyncLoader } from "react-spinners";
 import React from "react";
 
-// import Logo from "../../assets/loading/logo.svg";
 const LoadingPage = () => {
   return (
     <Container>

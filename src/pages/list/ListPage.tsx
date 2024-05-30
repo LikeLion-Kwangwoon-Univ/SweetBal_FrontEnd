@@ -31,13 +31,6 @@ function ListPage() {
         최근 등록 밸런스
       </Title>
       <Container>
-        {/* {data?.pages.map((page, pageIndex) => (
-          <React.Fragment key={pageIndex}>
-            {page.map((list: listType) => (
-              <ListPageSingleListBox key={list.id} list={list} />
-            ))}
-          </React.Fragment>
-        ))} */}
         {data?.pages.map((page, pageIndex) => (
           <React.Fragment key={pageIndex}>
             {page.postList.map((list: listType) => (
