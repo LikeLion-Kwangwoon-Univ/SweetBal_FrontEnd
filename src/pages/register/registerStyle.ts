@@ -1,8 +1,25 @@
 import { styled } from 'styled-components';
-import { FlexCenterCSS } from '../../styles/common';
+import { FlexCenterCSS, FlexColumnCSS } from '../../styles/common';
 
 export const Hspace = styled.div`
   height: 66px;
+`;
+
+export const LayoutWrapper = styled.div`
+  flex-grow: 1;
+  width: 100%;
+  ${FlexColumnCSS};
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 66px;
+  //min-height: calc(100vh - 132px - 20px);
+`;
+
+export const HeaderText = styled.span`
+  position: absolute;
+  top: 16px;
+  left: 8px;
+  cursor: pointer;
 `;
 
 export const TitleInput = styled.input`
