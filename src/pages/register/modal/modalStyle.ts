@@ -1,5 +1,5 @@
-import { styled } from 'styled-components';
-import { FlexColumnCSS } from '../../../styles/common';
+import { styled } from "styled-components";
+import { FlexColumnCSS } from "../../../styles/common";
 
 export const ModalContainer = styled.div`
   width: 100%;
@@ -17,9 +17,7 @@ export const ModalWindow = styled.div`
   width: 327px;
   height: 192px;
   background-color: white;
-  position: absolute;
   align-items: center;
-  top: 343px;
   border-radius: 12px;
   ${FlexColumnCSS}
 `;
