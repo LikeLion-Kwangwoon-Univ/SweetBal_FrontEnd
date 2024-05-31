@@ -93,21 +93,20 @@ const Border = styled.div`
   min-height: calc(100vh - 132px - 20px);
   background-color: white;
   border-radius: 13px;
-  ${FlexColumnCSS}
-  align-items: center;
+  ${FlexColumnCSS};
 `;
 
 const Wrapper = styled.div`
   flex-grow: 1;
-  width: 285px;
-  ${FlexCenterCSS};
-  padding: 87px 0 108px 0;
+  padding: 20px;
+  ${FlexColumnCSS};
+  justify-content: center;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 `;
 
 const TitleBox = styled.div`
@@ -117,13 +116,14 @@ const TitleBox = styled.div`
   border-radius: 13px;
   color: white;
   font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
-  font-size: 30px;
+  font-size: 25px;
   ${FlexCenterCSS}
 `;
 
 const ImgWrapper = styled.div`
-  width: 73px;
+  width: 100%;
   height: 107px;
+  ${FlexCenterCSS};
 `;
 
 const fillAnimation = keyframes<{ percent: string }>`
