@@ -19,9 +19,9 @@ const Bubble = ({ comment }: BubbleTabType) => {
   const setTargetComment = useSetRecoilState(targetCommentState);
 
   const handleClickHeart = () => {
+    postLiked();
     setLikedNum((prev) => (like === 0 ? prev + 1 : prev - 1));
     setLike(like === 0 ? 1 : 0);
-    postLiked();
   };
 
   const handleClickRecomment = () => {

@@ -4,6 +4,7 @@ import { LikedQueryType } from "../../interface/CommentsInterface";
 
 export const usePostLiked = ({ postId, commentId, like }: LikedQueryType) => {
   const transformed_postId = parseInt(postId as string);
+
   return useMutation({
     mutationFn: () => {
       return CommentsApi.postLiked({

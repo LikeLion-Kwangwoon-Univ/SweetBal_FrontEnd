@@ -5,13 +5,14 @@ import { useGetAllComments } from "@/hooks/useGetAllComments";
 import { useRecoilValue } from "recoil";
 import { currentTabState } from "@/store/comments/atoms";
 import { useParams } from "react-router-dom";
+import LoadingPage from "@/components/loading/Loading";
 
 const Comments = () => {
   const { id: postId } = useParams();
   const currentTab = useRecoilValue(currentTabState);
   const { isLoading, isError } = useGetAllComments(parseInt(postId as string));
 
-  if (isLoading) return null;
+  if (isLoading) return <LoadingPage $width="100%" $height="100%" />;
   if (isError) return null;
 
   return (

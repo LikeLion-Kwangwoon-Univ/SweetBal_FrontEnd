@@ -11,6 +11,7 @@ import NavBar from "../../components/navBar/navBar";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isOpenCommentState, selectsState } from "@/store/comments/atoms";
 import { useParams } from "react-router-dom";
+import LoadingPage from "@/components/loading/Loading";
 
 function BalancePage() {
   const { id, subject } = {
@@ -38,7 +39,9 @@ function BalancePage() {
   };
 
   if (isOpenComment) return <Comments />;
-  if (status === "loading") return <div>로딩중</div>;
+
+  if (status === "loading")
+    return <LoadingPage $width="100%" $height="100svh" />;
   if (status === "error") return <div>에러가 발생했습니다</div>;
 
   return (
@@ -47,7 +50,7 @@ function BalancePage() {
         title={`${subject} balance` || "balance game"}
         url="/"
         views={gameData.leftSideVote + gameData.rightSideVote}
-      ></NavBar>
+      />
       <Wrapper>
         <Content>
           <TitleBox onClick={() => handleSelect("left")}>

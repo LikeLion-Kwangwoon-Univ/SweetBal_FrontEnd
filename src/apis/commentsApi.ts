@@ -23,7 +23,8 @@ const CommentsApi = {
   },
   postLiked({ postId, commentId, like }: postLikedType) {
     return axiosInstance.post(
-      `${PATH}/${postId}/comment/${commentId}/liked/${like}`
+      `${PATH}/${postId}/comment/${commentId}/liked/${like}`,
+      {}
     );
   },
   postComment({ postId, comment }: postComment) {
