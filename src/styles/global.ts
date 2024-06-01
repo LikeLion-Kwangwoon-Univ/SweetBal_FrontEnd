@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -52,6 +52,12 @@ html {
 }
 body {
 	line-height: 1;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
 }
 ol, ul {
 	list-style: none;
@@ -86,6 +92,6 @@ body{
     padding: 0 20px 20px; 
     box-sizing: border-box;
 }
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
