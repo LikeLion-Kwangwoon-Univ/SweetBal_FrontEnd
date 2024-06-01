@@ -22,11 +22,11 @@ function NewBtn() {
 export default NewBtn;
 
 const Container = styled.div`
+  align-self: flex-end;
   width: 63px;
   height: 63px;
   border-radius: 50%;
-  position: absolute;
-  right: 40px;
+  position: fixed;
   bottom: 40px;
 
   ${FlexCenterCSS}

@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { FlexColumnCSS } from "@/styles/common";
 import ListPageSingleListBox from "@/components/list/ListPageSingleListBox";
 import { useNavigate, useParams } from "react-router-dom";
+import NewBtn from "@/components/Button/newBtn";
+import LoadingPage from "@/components/loading/Loading";
 
 type listType = {
   id: number;
@@ -49,10 +51,13 @@ function ListPage() {
             ))}
           </React.Fragment>
         ))}
-        {isFetchingNextPage
-          ? "Loading..."
-          : hasNextPage && <div ref={ref} style={{ height: "20px" }} />}
+        {isFetchingNextPage ? (
+          <LoadingPage $width="100%" $height="20px" />
+        ) : (
+          hasNextPage && <div ref={ref} style={{ height: "20px" }} />
+        )}
       </Container>
+      <NewBtn />
     </Border>
   );
 }

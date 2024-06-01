@@ -50,7 +50,7 @@ function BalancePage() {
         title={`${subject} balance` || "balance game"}
         url="/"
         views={gameData.leftSideVote + gameData.rightSideVote}
-      ></NavBar>
+      />
       <Wrapper>
         <Content>
           <TitleBox onClick={() => handleSelect("left")}>
