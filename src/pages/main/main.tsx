@@ -6,22 +6,19 @@ import LoadingPage from "../../components/loading/Loading";
 function MainPage() {
   const { data: mainData, isLoading } = useGetMainData();
 
-  if (isLoading)
-    return (
-      <Container>
-        <LoadingPage />
-      </Container>
-    );
-
   return (
     <Container>
-      {mainData?.allPostList.map((el, idx) => (
-        <Group4x4ListBox
-          key={idx}
-          subject={el.subject}
-          postList={el.postList}
-        />
-      ))}
+      {isLoading && (
+        <LoadingPage $width="100%" $height="calc(100svh - 132px - 20px)" />
+      )}
+      {mainData &&
+        mainData?.allPostList.map((el, idx) => (
+          <Group4x4ListBox
+            key={idx}
+            subject={el.subject}
+            postList={el.postList}
+          />
+        ))}
     </Container>
   );
 }

@@ -5,6 +5,7 @@ import GlobalStyles from "./styles/global";
 import router from "./Routes/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const RouterObject = createBrowserRouter(router);
@@ -27,6 +28,7 @@ function App() {
             <GlobalStyles />
             <RouterProvider router={RouterObject} />
           </ThemeProvider>
+          <ReactQueryDevtools />
         </QueryClientProvider>
       </RecoilRoot>
     </>
