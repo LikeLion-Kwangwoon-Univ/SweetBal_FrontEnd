@@ -8,11 +8,11 @@ export const usePostComment = (postId: number) => {
     mutationFn: (comment: PostCommentType) => {
       return CommentsApi.postComment({ postId, comment });
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["useGetComments", postId],
       });
     },
-    onError: (error) => {},
+    onError: () => {},
   });
 };

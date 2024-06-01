@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexCenterCSS, FlexColumnCSS } from "../../styles/common";
+import { FlexColumnCSS } from "../../styles/common";
 import { SyncLoader } from "react-spinners";
 
 interface LoadingPageType {
