@@ -13,13 +13,17 @@ interface ListPageSingleListBoxProps {
     leftSideVote: number;
     rightSideVote: number;
   };
+  subject: string | undefined;
 }
 
-const ListPageSingleListBox = ({ list }: ListPageSingleListBoxProps) => {
+const ListPageSingleListBox = ({
+  list,
+  subject,
+}: ListPageSingleListBoxProps) => {
   const { id, leftSideTitle, rightSideTitle, leftSideVote, rightSideVote } =
     list;
   const navigate = useNavigate();
-  const navigateToBalance = () => navigate(`/balance/${id}`);
+  const navigateToBalance = () => navigate(`/balance/${subject}/${id}`);
 
   return (
     <Container onClick={navigateToBalance}>

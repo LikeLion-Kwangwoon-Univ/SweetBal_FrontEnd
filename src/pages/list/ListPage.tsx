@@ -29,7 +29,6 @@ function ListPage() {
       fetchNextPage();
     }
   }, [inView]);
-
   return (
     <Border>
       <Title>
@@ -42,7 +41,11 @@ function ListPage() {
         {data?.pages.map((page, pageIndex) => (
           <React.Fragment key={pageIndex}>
             {page.postList.map((list: listType) => (
-              <ListPageSingleListBox key={list.id} list={list} />
+              <ListPageSingleListBox
+                key={list.id}
+                list={list}
+                subject={subject}
+              />
             ))}
           </React.Fragment>
         ))}
