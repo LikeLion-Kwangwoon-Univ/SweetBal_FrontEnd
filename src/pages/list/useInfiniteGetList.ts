@@ -1,5 +1,4 @@
 import { QueryFunctionContext, useInfiniteQuery } from "@tanstack/react-query";
-
 import axiosInstance from "@/apis/@core";
 
 const EN_PATH = ["hot", "balance", "latest"];
@@ -11,12 +10,13 @@ const Getlist = async ({
 }: QueryFunctionContext<[string, string]>) => {
   const path = EN_PATH[KO_PATH.indexOf(queryKey[1])];
   const url = `goldbalance/posts/${path}?cursor=${pageParam}`;
+
   const response = await axiosInstance.get(url);
   const list = response.data.postList;
 
   return {
     postList: list,
-    nextCursor: response.data.nextCursor,
+    lastCursor: response.data.lastCursor,
   };
 };
 
@@ -30,19 +30,16 @@ const useInfiniteGetList = (path: string) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery(["project", path], Getlist, {
-    getNextPageParam: (lastPage) => {
-      return lastPage.nextCursor === -1 ? undefined : lastPage.nextCursor;
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length;
+      return lastPage.lastCursor === -1 ? undefined : nextPage;
     },
   });
 
   return {
     data,
     error,
-    fetchNextPage: () => {
-      const nextPageCursor =
-        data?.pages[data?.pages.length - 1]?.nextCursor ?? 0;
-      fetchNextPage({ pageParam: nextPageCursor });
-    },
+    fetchNextPage,
     hasNextPage,
     isFetching,
     isFetchingNextPage,

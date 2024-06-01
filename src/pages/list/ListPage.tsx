@@ -26,11 +26,14 @@ function ListPage() {
   const { ref, inView } = useInView();
   const navigate = useNavigate();
 
+  console.log(inView, hasNextPage);
   useEffect(() => {
     if (inView && hasNextPage) {
+      console.log("inView was detected");
       fetchNextPage();
     }
   }, [inView]);
+
   return (
     <Border>
       <Title>
