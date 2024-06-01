@@ -16,7 +16,7 @@ function Group4x4ListBox({ subject, postList }: responseType) {
 
       <ListContainer>
         {postList.length === 0 ? (
-          <p className="no-data">아직 박빙인 게임이 없어요.</p>
+          <p className="no-data">아직 {subject} 게임이 없어요.</p>
         ) : (
           postList.map((item, idx) => (
             <SingleListBox
