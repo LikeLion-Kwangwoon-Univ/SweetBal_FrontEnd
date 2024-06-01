@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { useInView } from "react-intersection-observer";
-import useInfiniteGetList from "./useInfiniteGetList";
 
 import styled from "styled-components";
 import { FlexColumnCSS } from "@/styles/common";
@@ -9,6 +8,7 @@ import ListPageSingleListBox from "@/components/list/ListPageSingleListBox";
 import { useNavigate, useParams } from "react-router-dom";
 import NewBtn from "@/components/Button/newBtn";
 import LoadingPage from "@/components/loading/Loading";
+import useGetList from "@/query/get/useGetList";
 
 type listType = {
   id: number;
@@ -22,14 +22,15 @@ function ListPage() {
   const { subject } = useParams<{ subject: string }>();
   const validType = subject || "defaultType";
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useInfiniteGetList(validType);
-  const { ref, inView } = useInView();
+    useGetList(validType);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    delay: 1000,
+  });
   const navigate = useNavigate();
 
-  console.log(inView, hasNextPage);
   useEffect(() => {
     if (inView && hasNextPage) {
-      console.log("inView was detected");
       fetchNextPage();
     }
   }, [inView]);
