@@ -140,7 +140,7 @@ const fillAnimation = keyframes<{ percent: string }>`
 
 const PercentBox = styled.div<{ percent: string }>`
   width: ${({ percent }) => percent};
-  animation: ${({ percent }) => fillAnimation} 2s ease-out;
+  animation: ${() => fillAnimation} 2s ease-out;
   margin: 5px 0px;
   height: 26px;
   background-color: #f9cccc;

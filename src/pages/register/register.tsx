@@ -35,7 +35,7 @@ function RegisterPage() {
   };
   const closeModal = () => {
     setIsModalOpen(false);
-    //navigate('/');
+    navigate("/");
   };
 
   return (
