@@ -12,18 +12,20 @@ type listType = {
   id: number;
   leftSideTitle: string;
   rightSideTitle: string;
+  leftSideVote: number;
+  rightSideVote: number;
 };
 
 function ListPage() {
   const { subject } = useParams<{ subject: string }>();
   const validType = subject || "defaultType";
-  const { data, fetchNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteGetList(validType);
   const { ref, inView } = useInView();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasNextPage) {
       fetchNextPage();
     }
   }, [inView]);
@@ -44,7 +46,9 @@ function ListPage() {
             ))}
           </React.Fragment>
         ))}
-        {isFetchingNextPage ? "Loading..." : <div ref={ref} />}
+        {isFetchingNextPage
+          ? "Loading..."
+          : hasNextPage && <div ref={ref} style={{ height: "20px" }} />}
       </Container>
     </Border>
   );
@@ -53,16 +57,15 @@ function ListPage() {
 export default ListPage;
 
 const Title = styled.div`
-  font-size: 20px;
   font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
   display: flex;
   align-items: center;
 `;
 
 const Icon = styled.div`
   cursor: pointer;
+  margin-right: 5px;
 `;
 
 const Container = styled.div`

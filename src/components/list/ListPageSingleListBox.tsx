@@ -1,20 +1,23 @@
-import { IoEyeOutline } from "react-icons/io5";
 import styled from "styled-components";
 
 import { useNavigate } from "react-router-dom";
 import { FlexColumnCSS } from "@/styles/common";
 import strAddDots from "@/utils/strAddDots";
+import { AiOutlineInbox } from "react-icons/ai";
 
 interface ListPageSingleListBoxProps {
   list: {
     id: number;
     leftSideTitle: string;
     rightSideTitle: string;
+    leftSideVote: number;
+    rightSideVote: number;
   };
 }
 
 const ListPageSingleListBox = ({ list }: ListPageSingleListBoxProps) => {
-  const { id, leftSideTitle, rightSideTitle } = list;
+  const { id, leftSideTitle, rightSideTitle, leftSideVote, rightSideVote } =
+    list;
   const navigate = useNavigate();
   const navigateToBalance = () => navigate(`/balance/${id}`);
 
@@ -26,8 +29,8 @@ const ListPageSingleListBox = ({ list }: ListPageSingleListBoxProps) => {
         <Title>{strAddDots(rightSideTitle)}</Title>
       </BalanceContainer>
       <ViewContainer>
-        <IoEyeOutline />
-        <ViewCountSpan>{122}</ViewCountSpan>
+        <AiOutlineInbox />
+        <ViewCountSpan>{leftSideVote + rightSideVote}</ViewCountSpan>
       </ViewContainer>
     </Container>
   );
@@ -69,7 +72,7 @@ const ViewCountSpan = styled.span`
   display: flex;
   padding: 0px;
   padding-top: 1px;
-  margin-left: none;
+  margin-left: 5px;
   justify-content: center;
   align-items: center;
   font-size: 12px;
