@@ -14,13 +14,14 @@ function NavBar({ title, url, views }: NavBarPropsType) {
   const HandleNavClick = () => {
     navigate(url);
   };
+
   return (
     <Container>
       <Side>
         <EventIoIosArrowBack onClick={HandleNavClick} />
         <Back>{title}</Back>
       </Side>
-      {views && (
+      {views !== undefined && (
         <Side>
           <AiOutlineInbox />
           <Views>{views}</Views>
