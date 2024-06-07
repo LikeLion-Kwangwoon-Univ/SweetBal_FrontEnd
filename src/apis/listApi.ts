@@ -1,7 +1,7 @@
 import axiosInstance from "@/apis/@core";
 import { QueryFunctionContext } from "@tanstack/react-query";
 
-const EN_PATH = ["hot", "balance", "latest"];
+const EN_PATH = ["balance", "hot", "latest"];
 const KO_PATH = ["박빙", "인기", "최근"];
 
 const listApi = async ({
