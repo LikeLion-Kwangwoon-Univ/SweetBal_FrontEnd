@@ -16,8 +16,9 @@ function RegisterPage() {
   const [subtitle2, setSubtitle2] = useState("");
   const [btnDisable, setBtnDisable] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [id, setId] = useState<number | null>(null);
 
-  const { mutate: postBalance } = usePostBalance(setIsModalOpen);
+  const { mutate: postBalance } = usePostBalance({ setIsModalOpen, setId });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function RegisterPage() {
   };
   const closeModal = () => {
     setIsModalOpen(false);
-    navigate("/");
+    navigate(`/balance/최근/${id}`);
   };
 
   return (

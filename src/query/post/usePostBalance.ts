@@ -3,15 +3,20 @@ import RegisterApi from "@/apis/registerApi";
 import { RegisterType } from "@/interface/RegisterInterface";
 import { SetStateAction } from "react";
 
-type PostBalanceType = React.Dispatch<SetStateAction<boolean>>;
+interface PostBalanceType {
+  setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
+  setId: React.Dispatch<SetStateAction<number | null>>;
+}
+// type PostBalanceType = React.Dispatch<SetStateAction<boolean>>;
 
-export const usePostBalance = (setIsModalOpen: PostBalanceType) => {
+export const usePostBalance = ({ setIsModalOpen, setId }: PostBalanceType) => {
   return useMutation({
     mutationFn: (balance: RegisterType) => {
       return RegisterApi.postBalance(balance);
     },
-    onSuccess: () => {
+    onSuccess: (res) => {
       setIsModalOpen(true);
+      setId(res.data);
     },
   });
 };
